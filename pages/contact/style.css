@@ -1,0 +1,16 @@
+.form__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form_button{
+    border-radius: 24px;
+}
+.phone__input{
+    width: 277px;
+}
+
+.hide{
+    display: none;
+}
