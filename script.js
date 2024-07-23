@@ -14,6 +14,12 @@ const takeInput = document.querySelector('#take');
 const dollar = document.querySelector('#dollar');
 const euro = document.querySelector('#euro')
 
+//reload page
+window.onload = function() {
+	sendInput.value = '';
+	takeInput.value = '';
+};
+
 //go to other page for submit
 function redirectToNewPage(e) {
 	e.preventDefault();
