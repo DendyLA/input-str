@@ -146,8 +146,13 @@ input:focus, input:active{
     border-radius: 8px !important;
     height: 50px;
     z-index: 0 !important;
+    text-align: start;
 }
-
+#send{
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
 .dropdown__button_third:hover, .dropdown__button_fourth:hover, .dropdown__button_fifth:hover{
     border-color: #6c757d;
     background-color: white;
@@ -157,9 +162,7 @@ input:focus, input:active{
     background-color: white !important;
     color: black !important;
 }
-.dropdown__button_third, .dropdown__button_fifth{
-    border-color: #F5F7FD !important;
-}
+
 
 
 /* other*/

@@ -27,7 +27,7 @@ const sendInput = document.querySelector('#send');
 const takeInput = document.querySelector('#take');
 
 const dollar = document.querySelector('#dollar');
-const euro = document.querySelector('#euro');
+const euro = document.querySelector('#rub');
 
 const searchFirst = document.querySelector('.search__first');
 const searchInputFirst = document.querySelector('.search__input_first')
@@ -35,6 +35,29 @@ const searchInputFirst = document.querySelector('.search__input_first')
 const searchSecond = document.querySelector('.search__second');
 const searchInputSecond = document.querySelector('.search__input_second')
 
+//inputs
+function formatNumber(number) {
+	return  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+function removeSpaces(str) {
+	return str.replace(/\s+/g, '');
+}
+// Устанавливаем начальное значение для takeInput
+// sendInput.value = formatNumber(10000);
+sendInput.addEventListener('blur', function(e) {
+	const value = e.target.value;
+
+	if (value < 10000) {
+		e.target.value = '10000';
+		message[0].classList.remove('hide')
+		message[0].textContent = 'Введите число больше или равно 10000';
+	} else {
+		// Форматируем число и выполняем другие действия
+		message[0].classList.add('hide')
+		e.target.value = formatNumber(e.target.value);
+		message[0].textContent = message[1].textContent;
+	}
+});
 //search
 
 searchInputFirst.addEventListener('input', () => {
@@ -237,21 +260,23 @@ async function calculateSend(e){
 		}
 	}
 	
-	const exchangeCount = data[takeCurrency.toLowerCase()]
+	const exchangeCount = data[takeCurrency.toLowerCase()];
 	//formul for the input field currency and precent
+	
 	let finalData = e.target.value * exchangeCount
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
 	takeInput.value = finalData.toFixed(2);
-
-	if(takeInput.value === 'NaN'){
+	//final data or sendInput ==NaN
+	if(finalData === 'NaN'){
 		takeInput.value = '';
 		for(let i of message){
 			i.classList.remove('hide');
 		}
 	}
-	
+
+	e.target.value = formatNumber(e.target.value);
 }
 
 sendInput.addEventListener('input', calculateSend);
@@ -271,6 +296,7 @@ async function calculateTake(e){
 	}
 
 	const exchangeCount = data[sendCurrency.toLowerCase()]
+
 	//formul for the input field currency and precent
 	let finalData = e.target.value * exchangeCount
 	const percent = finalData * 0.1;
@@ -284,6 +310,7 @@ async function calculateTake(e){
 			i.classList.remove('hide');
 		}
 	}
+	e.target.value = formatNumber(e.target.value);
 }
 
 takeInput.addEventListener('input', calculateTake);
