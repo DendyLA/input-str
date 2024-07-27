@@ -103,6 +103,7 @@ searchInputSecond.addEventListener('input', () => {
 window.onload = function() {
 	sendInput.value = '10 000';
 	takeInput.value = '';
+	
 };
 
 //go to other page for submit
