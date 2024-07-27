@@ -259,11 +259,11 @@ async function calculateSend(e){
 			i.classList.add('hide');
 		}
 	}
-	
+	let val = removeSpaces(e.target.value)
 	const exchangeCount = data[takeCurrency.toLowerCase()];
 	//formul for the input field currency and precent
 	
-	let finalData = parseInt(e.target.value) * exchangeCount
+	let finalData = parseInt(val) * exchangeCount
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
@@ -294,11 +294,11 @@ async function calculateTake(e){
 			i.classList.add('hide');
 		}
 	}
-
+	let val = removeSpaces(e.target.value)
 	const exchangeCount = data[sendCurrency.toLowerCase()]
 
 	//formul for the input field currency and precent
-	let finalData = parseInt(e.target.value) * exchangeCount
+	let finalData = parseInt(val) * exchangeCount
 	const percent = finalData * 0.1;
 	finalData = finalData + percent;
 
