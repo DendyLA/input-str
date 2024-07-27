@@ -2,13 +2,21 @@ const inputTel = document.querySelector("#phone");
 const form = document.querySelector("#form");
 const message = document.querySelector("#message");
 const inputLogin = document.querySelector('#loginInput');
-
+const inputText = document.querySelector('.input__text');
 const iti = window.intlTelInput(inputTel, {
     initialCountry: "ru",
     separateDialCode: true,
     hiddenInput: () => ({ phone: "full_phone", country: "country_code" }),
     utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/utils.js" // just for formatting/placeholders etc
 });
+inputLogin.addEventListener('DOMSubtreeModified', (e) => {
+    if(inputLogin.classList.contains('hide')){
+        inputText.classList.add('hide')
+    }else{
+        inputText.classList.remove('hide')
+    }
+})
+
 
 form.onsubmit = (e) => {
     if (!iti.isValidNumber() ) {

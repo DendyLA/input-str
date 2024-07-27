@@ -13,8 +13,9 @@
     <div class="container ">
         <form action="" id="form">
                 <div class="form-group mt-4 form__wrapper">
-                    <label for="loginInput">Логин Telegram или Телефон </label>
-                    <input class="form-control col-3" id="loginInput" type="text" placeholder="login" name="login">
+                    <label class="form__title">Введите Telegram Username <br> или номер телефона </label>
+                    <input class="form-control " id="loginInput" type="text" placeholder="login" name="login">
+                    <span class="input__text">@username</span>
                     <!-- with phone number-->
                     <div class="phone__number_wrapper hide" >
                         <input id="phone" class='phone__input form-control' type="tel" name="phone">
@@ -22,8 +23,8 @@
                     </div>
                     <p id="message" class="message"></p>
                     <!-- with phone number-->
-                    <button class="btn btn-danger mt-3 col-6 form_button" id="btn" type="submit">Отправить</button>
-                    <div class="conf col-6 mt-3">
+                    <button class="btn mt-3 form_button" id="btn" type="submit">Отправить</button>
+                    <div class="conf mt-3">
                         <input id='confCheck' checked class="form-check-input" type="checkbox" autocomplete="on" required="required" true-value="true" value="false">
                         <label for="confCheck" class="form-check-label"> Я соглашаюсь на обработку персональных данных  согласно  политике конфиденциальности</label>
                     </div>

@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 .form_button{
     border-radius: 24px;
@@ -10,7 +11,59 @@
 .phone__input{
     width: 277px;
 }
-
+.form-control {
+    width: 300px;
+    border-radius: 8px !important;
+    z-index: 0 !important;
+    border-color: #6c757d !important;
+}
+.input__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 25px;
+    top: 77px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
 .hide{
     display: none;
+}
+
+.form__title{
+    text-align: center;
+    color: #4263EA;
+    margin-top: 15px;
+}
+.form_button{
+    width: 300px;
+}
+#loginInput{
+    margin-top: 20px;
+}
+.form-check-label{
+    width: 100%;
+    font-size: 12px;
+}
+.conf{
+    margin-top: 20px;
+    width: 284px;
+}
+#btn{
+    background-color: #4263EA;
+    color: white;
+}
+
+@media (max-width: 420px) {
+    .container{
+        background-color: white;
+        margin-top: 40px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        height: 100vh;
+    }
+    body{
+        background-color: #4962E3;
+    }
 }

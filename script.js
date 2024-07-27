@@ -268,8 +268,12 @@ async function calculateSend(e){
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
-	// takeInput.value = finalData.toFixed(2);
-	takeInput.value = formatNumber(parseInt(finalData));
+	if(dropdownButtonSecond.innerText == 'BTC'){
+		takeInput.value = formatNumber(finalData.toFixed(5));
+	}else{
+		takeInput.value = formatNumber(finalData.toFixed(2));
+	}
+
 	//final data or takeInput ==NaN
 	if(takeInput.value  === 'NaN'){
 		takeInput.value = '';
@@ -304,8 +308,12 @@ async function calculateTake(e){
 	const percent = finalData * 0.1;
 	finalData = finalData + percent;
 
-	// sendInput.value = finalData.toFixed(2);
-	sendInput.value = formatNumber(parseInt(finalData));
+	if(dropdownButtonFirst.innerText == 'BTC'){
+		sendInput.value = finalData.toFixed(5);
+	}else{
+		sendInput.value = formatNumber(finalData.toFixed(2));
+	}
+	
 	
 	if(sendInput.value === 'NaN'){
 		sendInput.value = '';
@@ -349,7 +357,8 @@ window.onload = async function() {
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
-	takeInput.value = formatNumber(parseInt(finalData));
+
+	takeInput.value = formatNumber(finalData.toFixed(2));
 	//final data or takeInput ==NaN
 	if(takeInput.value  === 'NaN'){
 		takeInput.value = '';
