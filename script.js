@@ -101,7 +101,7 @@ searchInputSecond.addEventListener('input', () => {
 });
 //reload page
 window.onload = function() {
-	sendInput.value = '';
+	sendInput.value = '10 000';
 	takeInput.value = '';
 };
 
