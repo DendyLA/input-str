@@ -4,6 +4,8 @@
     align-items: center;
     flex-direction: column;
     position: relative;
+    width: 300px;
+    margin: 0 auto;
 }
 .form_button{
     border-radius: 24px;
@@ -22,7 +24,7 @@
     position: absolute;
     background-color: white;
     font-size: 14px;
-    left: 25px;
+    left: 20px;
     top: 77px;
     padding: 0px 8px;
     z-index: 1 !important;
