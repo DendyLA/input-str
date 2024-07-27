@@ -148,11 +148,7 @@ input:focus, input:active{
     z-index: 0 !important;
     text-align: start;
 }
-#send{
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
+
 .dropdown__button_third:hover, .dropdown__button_fourth:hover, .dropdown__button_fifth:hover{
     border-color: #6c757d;
     background-color: white;
