@@ -263,7 +263,7 @@ async function calculateSend(e){
 	const exchangeCount = data[takeCurrency.toLowerCase()];
 	//formul for the input field currency and precent
 	
-	let finalData = e.target.value * exchangeCount
+	let finalData = parseInt(e.target.value) * exchangeCount
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
@@ -298,7 +298,7 @@ async function calculateTake(e){
 	const exchangeCount = data[sendCurrency.toLowerCase()]
 
 	//formul for the input field currency and precent
-	let finalData = e.target.value * exchangeCount
+	let finalData = parseInt(e.target.value) * exchangeCount
 	const percent = finalData * 0.1;
 	finalData = finalData + percent;
 
