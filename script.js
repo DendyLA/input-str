@@ -263,11 +263,11 @@ async function calculateSend(e){
 	const exchangeCount = data[takeCurrency.toLowerCase()];
 	//formul for the input field currency and precent
 	
-	let finalData = parseInt(e.target.value) * parseInt(exchangeCount)
+	let finalData = e.target.value * exchangeCount
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
-	takeInput.value = parseInt(finalData.toFixed(2));
+	takeInput.value = finalData.toFixed(2);
 	//final data or takeInput ==NaN
 	if(takeInput.value  === 'NaN'){
 		takeInput.value = '';
