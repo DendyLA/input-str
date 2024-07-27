@@ -183,7 +183,7 @@ for(let i of dropdownMenuSecond.children){
 				//random
 				// const randomIndex = Math.floor(Math.random() * dropdownItemFirst.length);
 				// dropdownButtonFirst.innerHTML = dropdownItemFirst[randomIndex].innerHTML; 
-				dropdownButtonSecond.innerHTML = dollar.innerHTML;
+				dropdownButtonFirst.innerHTML = dollar.innerHTML;
 			}
 		}
 		sendInput.value = '';
