@@ -44,20 +44,20 @@ function removeSpaces(str) {
 }
 // Устанавливаем начальное значение для takeInput
 // sendInput.value = formatNumber(10000);
-sendInput.addEventListener('blur', function(e) {
-	const value = e.target.value;
+// sendInput.addEventListener('blur', function(e) {
+// 	const value = e.target.value;
 
-	if (value < 10000) {
-		e.target.value = '10000';
-		message[0].classList.remove('hide')
-		message[0].textContent = 'Введите число больше или равно 10000';
-	} else {
-		// Форматируем число и выполняем другие действия
-		message[0].classList.add('hide')
-		e.target.value = formatNumber(e.target.value);
-		message[0].textContent = message[1].textContent;
-	}
-});
+// 	if (value < 10000) {
+// 		e.target.value = '10000';
+// 		message[0].classList.remove('hide')
+// 		message[0].textContent = 'Введите число больше или равно 10000';
+// 	} else {
+// 		// Форматируем число и выполняем другие действия
+// 		message[0].classList.add('hide')
+// 		e.target.value = formatNumber(e.target.value);
+// 		message[0].textContent = message[1].textContent;
+// 	}
+// });
 //search
 
 searchInputFirst.addEventListener('input', () => {
