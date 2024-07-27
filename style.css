@@ -73,7 +73,7 @@ label{
     margin-left: -110px;
 }
 input{
-    border-radius: 5px !important;
+    border-radius: 8px !important;
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
     z-index: 0 !important;
@@ -132,11 +132,14 @@ input:focus, input:active{
     border-top: 1px solid ;
     border-right: 1px solid ;
     border-bottom: 1px solid ;
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
     border-color: #CED4DA !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .group__menu{
     width: 100% !important;
 }
@@ -147,6 +150,9 @@ input:focus, input:active{
     height: 50px;
     z-index: 0 !important;
     text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .dropdown__button_third:hover, .dropdown__button_fourth:hover, .dropdown__button_fifth:hover{
@@ -182,7 +188,7 @@ input:focus, input:active{
     border-color: #4962E3;
 }
 .button__link{
-    width: 340px !important;
+    width: 300px !important;
     height: 50px;
     margin: 0 auto;
     margin-top: 20px;

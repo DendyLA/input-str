@@ -99,12 +99,7 @@ searchInputSecond.addEventListener('input', () => {
         }
 	});
 });
-//reload page
-window.onload = function() {
-	sendInput.value = '10 000';
-	takeInput.value = '';
-	
-};
+
 
 //go to other page for submit
 function redirectToNewPage(e) {
@@ -318,3 +313,39 @@ takeInput.addEventListener('input', calculateTake);
 
 
 
+//reload page
+window.onload = async function() {
+	sendInput.value = '10 000';
+	takeInput.value = '';
+
+	const currency = dropdownButtonFirst.innerText.trim();
+	const data = await getExchange(currency.toLowerCase());
+	const takeCurrency = dropdownButtonSecond.innerText.trim();
+	if(currency == 'Выберите...'){
+		for(let i of message){
+			i.classList.remove('hide');
+		}
+	}else{
+		for(let i of message){
+			i.classList.add('hide');
+		}
+	}
+	let val = removeSpaces(sendInput.value)
+	const exchangeCount = data[takeCurrency.toLowerCase()];
+	//formul for the input field currency and precent
+	
+	let finalData = parseInt(val) * exchangeCount
+	const percent = finalData * 0.1;
+	finalData = finalData - percent;
+
+	takeInput.value = finalData.toFixed(2);
+	//final data or takeInput ==NaN
+	if(takeInput.value  === 'NaN'){
+		takeInput.value = '';
+		for(let i of message){
+			i.classList.remove('hide');
+		}
+	}
+
+	sendInput.value = formatNumber(sendInput.value);
+};
