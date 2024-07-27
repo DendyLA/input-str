@@ -27,7 +27,7 @@ const sendInput = document.querySelector('#send');
 const takeInput = document.querySelector('#take');
 
 const dollar = document.querySelector('#dollar');
-const euro = document.querySelector('#rub');
+const rub = document.querySelector('#rub');
 
 const searchFirst = document.querySelector('.search__first');
 const searchInputFirst = document.querySelector('.search__input_first')
@@ -140,10 +140,12 @@ for(let i of dropdownMenuFirst.children){
 		})
 		if(dropdownButtonFirst.innerHTML === dropdownButtonSecond.innerHTML){
 			if(dropdownButtonSecond.innerHTML === dollar.innerHTML){
-				dropdownButtonSecond.innerHTML = euro.innerHTML;
+				dropdownButtonSecond.innerHTML = rub.innerHTML;
 			}else{
-				const randomIndex = Math.floor(Math.random() * dropdownItemSecond.length);
-				dropdownButtonSecond.innerHTML = dropdownItemSecond[randomIndex].innerHTML; 
+				//random
+				// const randomIndex = Math.floor(Math.random() * dropdownItemSecond.length);
+				// dropdownButtonSecond.innerHTML = dropdownItemSecond[randomIndex].innerHTML; 
+				dropdownButtonSecond.innerHTML = dollar.innerHTML;
 			}
 		}
 		sendInput.value = '';
@@ -176,16 +178,19 @@ for(let i of dropdownMenuSecond.children){
 		})
 		if(dropdownButtonSecond.innerHTML === dropdownButtonFirst.innerHTML){
 			if(dropdownButtonFirst.innerHTML === dollar.innerHTML){
-				dropdownButtonFirst.innerHTML = euro.innerHTML;
+				dropdownButtonFirst.innerHTML = rub.innerHTML;
 			}else{
-				const randomIndex = Math.floor(Math.random() * dropdownItemFirst.length);
-				dropdownButtonFirst.innerHTML = dropdownItemFirst[randomIndex].innerHTML; 
+				//random
+				// const randomIndex = Math.floor(Math.random() * dropdownItemFirst.length);
+				// dropdownButtonFirst.innerHTML = dropdownItemFirst[randomIndex].innerHTML; 
+				dropdownButtonSecond.innerHTML = dollar.innerHTML;
 			}
 		}
 		sendInput.value = '';
 		takeInput.value = '';
 	})
 }
+
 //third
 dropdownButtonThird.innerHTML = 'Выбрать';
 for(let i of dropdownMenuThird.children){
@@ -263,7 +268,8 @@ async function calculateSend(e){
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
-	takeInput.value = finalData.toFixed(2);
+	// takeInput.value = finalData.toFixed(2);
+	takeInput.value = formatNumber(parseInt(finalData));
 	//final data or takeInput ==NaN
 	if(takeInput.value  === 'NaN'){
 		takeInput.value = '';
@@ -298,7 +304,8 @@ async function calculateTake(e){
 	const percent = finalData * 0.1;
 	finalData = finalData + percent;
 
-	sendInput.value = finalData.toFixed(2);
+	// sendInput.value = finalData.toFixed(2);
+	sendInput.value = formatNumber(parseInt(finalData));
 	
 	if(sendInput.value === 'NaN'){
 		sendInput.value = '';
@@ -315,6 +322,10 @@ takeInput.addEventListener('input', calculateTake);
 
 //reload page
 window.onload = async function() {
+	//layout frist input
+	dropdownButtonFirst.innerHTML = rub.innerHTML;
+	dropdownButtonSecond.innerHTML = dollar.innerHTML;
+	//layout end
 	sendInput.value = '10 000';
 	takeInput.value = '';
 
@@ -338,7 +349,7 @@ window.onload = async function() {
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
-	takeInput.value = finalData.toFixed(2);
+	takeInput.value = formatNumber(parseInt(finalData));
 	//final data or takeInput ==NaN
 	if(takeInput.value  === 'NaN'){
 		takeInput.value = '';
@@ -348,4 +359,7 @@ window.onload = async function() {
 	}
 
 	sendInput.value = formatNumber(sendInput.value);
+
+	
+	
 };
