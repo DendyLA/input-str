@@ -260,16 +260,16 @@ async function calculateSend(e){
 		}
 	}
 	
-	const exchangeCount = parseInt(data[takeCurrency.toLowerCase()]);
+	const exchangeCount = data[takeCurrency.toLowerCase()];
 	//formul for the input field currency and precent
 	
-	let finalData = parseInt(e.target.value) * exchangeCount
+	let finalData = parseInt(e.target.value) * parseInt(exchangeCount)
 	const percent = finalData * 0.1;
 	finalData = finalData - percent;
 
-	takeInput.value = finalData.toFixed(2);
-	//final data or sendInput ==NaN
-	if(finalData === 'NaN'){
+	takeInput.value = parseInt(finalData.toFixed(2));
+	//final data or takeInput ==NaN
+	if(takeInput.value  === 'NaN'){
 		takeInput.value = '';
 		for(let i of message){
 			i.classList.remove('hide');
