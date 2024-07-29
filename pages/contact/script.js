@@ -97,6 +97,8 @@ function backSpace(e){
     if (e.keyCode === 8 && inputTel.value === "") {
         inputLogin.classList.remove("hide");
         inputIti.classList.add("hide");
+        //input text top of input
+        inputText.classList.remove('hide');
         inputLogin.focus();
         return;
     }
