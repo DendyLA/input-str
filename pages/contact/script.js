@@ -9,13 +9,13 @@ const iti = window.intlTelInput(inputTel, {
     hiddenInput: () => ({ phone: "full_phone", country: "country_code" }),
     utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/utils.js" // just for formatting/placeholders etc
 });
-inputLogin.addEventListener('DOMSubtreeModified', (e) => {
-    if(inputLogin.classList.contains('hide')){
-        inputText.classList.add('hide')
-    }else{
-        inputText.classList.remove('hide')
-    }
-})
+// inputLogin.addEventListener('DOMSubtreeModified', (e) => {
+//     if(inputLogin.classList.contains('hide')){
+//         inputText.classList.add('hide')
+//     }else{
+//         inputText.classList.remove('hide')
+//     }
+// })
 
 
 form.onsubmit = (e) => {
@@ -78,12 +78,16 @@ function hideToggle(e){
         inputTel.value = '';
         inputLogin.classList.remove("hide");
         inputIti.classList.add("hide");
+        //text in top of  input
+        inputText.classList.remove('hide');
         inputLogin.focus();
     } else if (digitPlusRegex.test(firstCharLogin) && !digitPlusRegex.test(firstCharTel)) {
         // If inputA has digits or + first or inputB has digits or + first
         inputLogin.value = '';
         inputLogin.classList.add("hide");
         inputIti.classList.remove("hide");
+        //text in top of  input
+        inputText.classList.add('hide');
         inputTel.focus();
         const submitButton = document.getElementById("btn");
         submitButton.setAttribute('disabled', 'true'); // Disable button initially
