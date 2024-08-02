@@ -1,3 +1,4 @@
+const search = document.querySelectorAll('.search__info');
 
 const dropdownButtonFirst = document.querySelector('.dropdown__button_first');
 const dropdownButtonSecond = document.querySelector('.dropdown__button_second');
@@ -198,6 +199,8 @@ for(let i of dropdownMenuThird.children){
 		e.preventDefault();
 		if(e.target.tagName === 'A'){
 			dropdownButtonThird.innerHTML = e.target.innerHTML;
+		}else if(e.target === search[1]){
+			return
 		}else{
 			dropdownButtonThird.innerHTML = e.target.parentElement.innerHTML;
 		}
@@ -210,17 +213,22 @@ for(let i of dropdownMenuFourth.children){
 		e.preventDefault();
 		if(e.target.tagName === 'A'){
 			dropdownButtonFourth.innerHTML = e.target.innerHTML;
+		}else if(e.target === search[0]){
+			return
 		}else{
 			dropdownButtonFourth.innerHTML = e.target.parentElement.innerHTML;
 		}
 	})
 }
+//fifth
 dropdownButtonFifth.innerHTML = 'Выбрать';
 for(let i of dropdownMenuFifth.children){
 	i.addEventListener('click', (e) => {
 		e.preventDefault();
 		if(e.target.tagName === 'A'){
 			dropdownButtonFifth.innerHTML = e.target.innerHTML;
+		}else if(e.target === search[2]){
+			return
 		}else{
 			dropdownButtonFifth.innerHTML = e.target.parentElement.innerHTML;
 		}

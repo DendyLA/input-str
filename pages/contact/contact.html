@@ -6,20 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/css/intlTelInput.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="container ">
+        <div class="form__title">Укажите ваш контакт</div>
         <form action="" id="form">
+                
                 <div class="form-group mt-4 form__wrapper">
-                    <label class="form__title">Введите Telegram Username <br> или номер телефона </label>
-                    <input class="form-control " id="loginInput" type="text" placeholder="login" name="login">
+                    <div class="row justify-content-center w-100">
+                        <div class="input-group col-12">
+                            <input id='input__name' class="form-control " type="text" placeholder="Введите имя" name="name">
+                            <span class="name__text">Ваше имя</span>
+                            <p class="message__name"></p>
+                    </div>
+                <div class="form-group mt-3 form__wrapper">
+                    <div class="row justify-content-center w-100">
+                        <div class="input-group col-12">
+                            <div class="input-group-append group__menu">
+                                <span class="upper__text">Способ получения перевода</span>
+                                <button class="dropdown__button_third btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-telegram"></i> <div>Telegram</div></button>
+                                <div class="dropdown-menu dropdown__menu_third">
+                                    <div class="search item__info">Выберите способ получения</div>
+                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-telegram"></i> <div>Telegram</div> </a>
+                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-whatsapp"></i> <div>WhatsApp</div>  </a>
+                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-envelope"></i> <div class="button__email">Email</div></a>
+                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-person-circle"></i> <div>Другое</div></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input class="form-control " id="loginInput" type="text" placeholder="username или телефон" name="contact">
                     <span class="input__text">@username</span>
+                    <!--email-->
+                    <div class="email__input hide">
+                        <input class="form-control " id="emailInput" type="email" placeholder="Введите данные" name="contact">
+                        <span class="email__text">Email</span>
+                    </div
+                    <!--email-->
                     <!-- with phone number-->
                     <div class="phone__number_wrapper hide" >
                         <input id="phone" class='phone__input form-control' type="tel" name="phone">
-                        
                     </div>
                     <p id="message" class="message"></p>
                     <!-- with phone number-->
@@ -36,7 +66,7 @@
     <!-- SCripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/intlTelInput.min.js"></script>
     <script src="./script.js"></script>
 </body>

@@ -1,8 +1,85 @@
 const inputTel = document.querySelector("#phone");
 const form = document.querySelector("#form");
 const message = document.querySelector("#message");
+
 const inputLogin = document.querySelector('#loginInput');
 const inputText = document.querySelector('.input__text');
+
+const inputName = document.querySelector('#input__name')
+const messageName = document.querySelector('.message__name')
+const search = document.querySelector('.search');
+
+const emailInput = document.querySelector('#emailInput')
+const emailInputWrapper = document.querySelector('.email__input')
+
+const dropdownButtonThird = document.querySelector('.dropdown__button_third');
+const dropdownMenuThird = document.querySelector('.dropdown__menu_third');
+
+
+let validName = false;
+//validate Name
+inputName.addEventListener('input', e => {
+    // Регулярное выражение для имени
+    const namePattern = /^([A-Za-z\-\']{1,50})|([А-Яа-я\-\']{1,50})$/;
+
+    if (namePattern.test(e.target.value)) {
+        messageName.textContent = "";
+        validName = true;
+    } else {
+        messageName.textContent = "Введите верное имя";
+        messageName.style.color = "red";
+        validName = false;
+    }
+})
+
+
+//inputs with select - Third()
+
+for(let i of dropdownMenuThird.children){
+	i.addEventListener('click', (e) => {
+		e.preventDefault();
+		if(e.target.tagName === 'A'){
+			dropdownButtonThird.innerHTML = e.target.innerHTML;
+		}else if(e.target === search){
+            console.log('єто я')
+			return
+		}else{
+			dropdownButtonThird.innerHTML = e.target.parentElement.innerHTML;
+		}
+
+        if(dropdownButtonThird.innerText === 'Email'){
+            emailInputWrapper.classList.remove('hide');
+            inputLogin.classList.add("hide");
+            inputIti.classList.add("hide");
+            inputText.classList.add('hide');
+        }else if(dropdownButtonThird.innerText === 'Другое'){
+            emailInputWrapper.classList.add('hide');
+            inputLogin.classList.add("hide");
+            inputIti.classList.remove("hide");
+            inputText.classList.add('hide');
+        }else{
+            emailInputWrapper.classList.add('hide');
+            inputLogin.classList.remove("hide");
+            inputIti.classList.add("hide");
+            inputText.classList.remove('hide');
+        }
+	})
+}
+//validate Email
+function validateEmail(e) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    e.target.value
+    if (emailPattern.test(e.target.value)) {
+        message.innerHTML = "";
+        submitButton.removeAttribute('disabled');
+    } else {
+        message.style = 'color:red;';
+        message.innerHTML = "Введите правильный Email ";
+    }
+}
+emailInput.addEventListener('input', validateEmail);
+//iti phone number input !!!!!!!!!!!!!!!!!!!!!!!
+
 const iti = window.intlTelInput(inputTel, {
     initialCountry: "ru",
     separateDialCode: true,
@@ -17,37 +94,31 @@ const iti = window.intlTelInput(inputTel, {
 //     }
 // })
 
+//Validate from Itti
 
-form.onsubmit = (e) => {
-    if (!iti.isValidNumber() ) {
-        if(inputLogin.value.length >= 5 && !inputLogin.classList.contains('hide')){
-            return true
-        }else if(inputLogin.value.length < 5 && !inputLogin.classList.contains('hide')){
-            // message.style = 'color:red;';
-            // message.innerHTML = "Введите правильный Логин ";
-            return false;
-        }
-        message.style = 'color:red;';
-        message.innerHTML = "Неправильный номер введите верный";
-        return false;
-    }
-};
+// form.onsubmit = (e) => {
+//     if (!iti.isValidNumber() ) {
+//         if(inputLogin.value.length >= 5 && !inputLogin.classList.contains('hide')){
+//             return true
+//         }else if(inputLogin.value.length < 5 && !inputLogin.classList.contains('hide')){
+//             // message.style = 'color:red;';
+//             // message.innerHTML = "Введите правильный Логин ";
+//             return false;
+//         }
+//         message.style = 'color:red;';
+//         message.innerHTML = "Неправильный номер введите верный";
+//         return false;
+//     }
+// };
 
-//login
+//name
 const loginParams = new URLSearchParams(window.location.search);
-const loginActive = loginParams.get('login')
-if (loginActive) {
+const nameActive = loginParams.get('name')
+if (nameActive) {
     message.style = 'color:grey;';
-    message.innerHTML = `Спасибо что оставили заявку: ${loginActive}`;
+    message.innerHTML = `Спасибо что оставили заявку: ${nameActive}`;
 }
 
-//phone
-const urlParams = new URLSearchParams(window.location.search);
-const fullPhone = urlParams.get('full_phone')
-if (fullPhone) {
-    message.style = 'color:grey;';
-    message.innerHTML = `Спасибо что оставили заявку: ${fullPhone}`;
-}
 
 
 
@@ -78,6 +149,7 @@ function hideToggle(e){
         inputTel.value = '';
         inputLogin.classList.remove("hide");
         inputIti.classList.add("hide");
+        emailInputWrapper.classList.add('hide')
         //text in top of  input
         inputText.classList.remove('hide');
         inputLogin.focus();
@@ -86,6 +158,7 @@ function hideToggle(e){
         inputLogin.value = '';
         inputLogin.classList.add("hide");
         inputIti.classList.remove("hide");
+        emailInputWrapper.classList.add('hide')
         //text in top of  input
         inputText.classList.add('hide');
         inputTel.focus();
@@ -121,7 +194,6 @@ function toggleHideClass(event) {
         submitButton.setAttribute('disabled', 'true');// Disable button if less than 5 characters
         message.style = 'color:red;';
         message.innerHTML = "Введите правильный Логин ";
-        console.log(message.innerHTML);
     } else {
         submitButton.removeAttribute('disabled'); // Enable button if 5 or more characters
         message.innerHTML = "";
@@ -144,3 +216,25 @@ submitButton.setAttribute('disabled', 'true'); // Disable button initially
 
 inputLogin.addEventListener("input", toggleHideClass);
 inputTel.addEventListener("input", toggleHideClass);
+
+
+//validate Form
+
+form.addEventListener('submit', e => {
+    if(validName){
+        return true
+    }else {
+        e.preventDefault();
+        messageName.textContent = "Введите имя";
+        messageName.style.color = "red";
+        submitButton.removeAttribute('disabled');
+        return false
+    }
+
+})
+
+window.onload = function() {
+    inputName.value = '';
+    inputTel.value = '';
+    inputLogin.value = '';
+}

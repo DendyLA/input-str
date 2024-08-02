@@ -11,7 +11,31 @@
     border-radius: 24px;
 }
 .phone__input{
-    width: 277px;
+    width: 300px !important;
+    color: black;
+    border-radius: 8px !important;
+    height: 50px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.phone__number_wrapper{
+    margin-top: 20px;
+    width: 300px;
+}
+.iti{
+    width: 100%;
+}
+.item__info{
+    padding: 0 12px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: #EEEEF0;
+    color: #495057;
 }
 .form-control {
     width: 300px;
@@ -25,24 +49,56 @@
     background-color: white;
     font-size: 14px;
     left: 20px;
-    top: 77px;
+    top: 60px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.name__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: 10px;
     padding: 0px 8px;
     z-index: 1 !important;
 }
 .hide{
-    display: none;
+    display: none !important;
 }
 
 .form__title{
     text-align: center;
     color: #4263EA;
     margin-top: 15px;
+    font-size: 25px;
 }
 .form_button{
     width: 300px;
 }
+.form-control{
+    margin-top: 20px;
+    width: 100% !important;
+    color: black;
+    border-radius: 8px !important;
+    height: 50px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 #loginInput{
     margin-top: 20px;
+    width: 100% !important;
+    color: black;
+    border-radius: 8px !important;
+    height: 50px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .form-check-label{
     width: 100%;
@@ -56,7 +112,99 @@
     background-color: #4263EA;
     color: white;
 }
+.group__menu{
+    width: 100% !important;
+}
+.input-group{
+    padding: 0 !important;
+}
+.upper__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: -10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+    cursor: pointer !important;
+}
+.dropdown__button_third{
+    width: 100% !important;
+    color: black;
+    border-radius: 8px !important;
+    height: 50px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dropdown__button_third:hover{
+    border-color: #6c757d;
+    background-color: white;
+    color: black;
+}
+.btn-outline-secondary.dropdown-toggle{
+    background-color: white !important;
+    color: black !important;
+}
+.input-group-append{
+    position: relative;
+}
 
+.dropdown-menu{
+    position: absolute;
+    top: -7px !important;
+    left: 0 !important;
+    width: 300px !important;
+    transform: none !important;
+    padding: 0 0 5px 0;
+}
+.btn-outline-secondary.dropdown-toggle:focus{
+    box-shadow: none !important;
+}
+.dropdown__button_third div{
+    margin-left: -150px;
+}
+.dropdown__button_third .button__email{
+    margin-left: -180px;
+}
+.dropdown-item div{
+    display: inline;
+}
+.email__input{
+    width: 100%;
+    position: relative;
+}
+.email__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: 10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.bi-telegram{
+    color: #1B9AE0;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.bi-whatsapp{
+    color: #20A41F;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.bi-envelope{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.bi-person-circle{
+    font-size: 20px;
+    margin-right: 10px;
+}
 @media (max-width: 420px) {
     .container{
         background-color: white;
@@ -69,3 +217,4 @@
         background-color: #4962E3;
     }
 }
+

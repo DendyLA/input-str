@@ -11,24 +11,7 @@
     padding: 20px;
 
 }
-@media (max-width: 420px) {
-    .title{
-        display: block;
-        color: white;
-        text-align: center;
-        margin-top: 20px;
-        font-size: 20px;
-    }
-    .container{
-        background-color: white;
-        margin-top: 40px;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-    }
-    body{
-        background-color: #4962E3;
-    }
-}
+
 label{
     display: block;
     width:  100%;
@@ -55,9 +38,7 @@ label{
     z-index: 1 !important;
     cursor: pointer !important;
 }
-.input-group{
-    position: relative;
-}
+
 .message{
     display: block;
     color: red;
@@ -115,13 +96,27 @@ input:focus, input:active{
     outline: none;
     box-shadow: none;
 }
+.input-group{
+    position: relative;
+}
+.btn-outline-secondary.dropdown-toggle:focus{
+    box-shadow: none !important;
+}
+.show > .btn-outline-secondary.dropdown-toggle:focus{
+    box-shadow: none !important;
+}
 .dropdown-menu{
-    width: 300px;
+    width: 92%;
     overflow: hidden;
     padding-top: 0;
     max-height: 350px;
     overflow: scroll;
     overflow-x: hidden;
+    
+    position: absolute;
+    left: 13px !important;
+    top: -7px !important;
+    transform: none !important;
 }
 .form-control{
     height: 50px !important;
@@ -168,7 +163,15 @@ input:focus, input:active{
     color: black !important;
 }
 
-
+.item__info{
+    padding: 0 12px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: #EEEEF0;
+    color: #495057;
+}
 
 /* other*/
 
@@ -211,4 +214,23 @@ input:focus, input:active{
 }
 .fi-usdt{
     background-image: url('img/usdt.png');
+}
+
+@media (max-width: 420px) {
+    .title{
+        display: block;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+    }
+    .container{
+        background-color: white;
+        margin-top: 40px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    body{
+        background-color: #4962E3;
+    }
 }
