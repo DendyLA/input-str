@@ -49,19 +49,19 @@ for(let i of dropdownMenuThird.children){
 			dropdownButtonThird.innerHTML = e.target.parentElement.innerHTML;
 		}
 
-        if(dropdownButtonThird.innerText === 'Email'){
+        if(dropdownButtonThird.innerText.trim() === 'Email'){
             otherInputWrapper.classList.add('hide');
             emailInputWrapper.classList.remove('hide');
             inputLogin.classList.add("hide");
             inputIti.classList.add("hide");
             inputText.classList.add('hide');
-        }else if(dropdownButtonThird.innerText === 'Другое'){
+        }else if(dropdownButtonThird.innerText.trim() === 'Другое'){
             otherInputWrapper.classList.remove('hide');
             emailInputWrapper.classList.add('hide');
             inputLogin.classList.add("hide");
             inputIti.classList.add("hide");
             inputText.classList.add('hide');
-        }else if(dropdownButtonThird.innerText === 'WhatsApp'){
+        }else if(dropdownButtonThird.innerText.trim() === 'WhatsApp'){
             otherInputWrapper.classList.add('hide');
             emailInputWrapper.classList.add('hide');
             inputLogin.classList.add("hide");
