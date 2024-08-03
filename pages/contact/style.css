@@ -177,7 +177,21 @@
     width: 100%;
     position: relative;
 }
+.other__input{
+    width: 100%;
+    position: relative;
+}
 .email__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: 10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.other__text{
     color: #77767B;
     position: absolute;
     background-color: white;

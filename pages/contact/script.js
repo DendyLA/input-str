@@ -12,6 +12,9 @@ const search = document.querySelector('.search');
 const emailInput = document.querySelector('#emailInput')
 const emailInputWrapper = document.querySelector('.email__input')
 
+const otherInput = document.querySelector('#otherInput');
+const otherInputWrapper = document.querySelector('.other__input');
+
 const dropdownButtonThird = document.querySelector('.dropdown__button_third');
 const dropdownMenuThird = document.querySelector('.dropdown__menu_third');
 
@@ -41,34 +44,43 @@ for(let i of dropdownMenuThird.children){
 		if(e.target.tagName === 'A'){
 			dropdownButtonThird.innerHTML = e.target.innerHTML;
 		}else if(e.target === search){
-            console.log('єто я')
 			return
 		}else{
 			dropdownButtonThird.innerHTML = e.target.parentElement.innerHTML;
 		}
 
         if(dropdownButtonThird.innerText === 'Email'){
+            otherInputWrapper.classList.add('hide');
             emailInputWrapper.classList.remove('hide');
             inputLogin.classList.add("hide");
             inputIti.classList.add("hide");
             inputText.classList.add('hide');
         }else if(dropdownButtonThird.innerText === 'Другое'){
+            otherInputWrapper.classList.remove('hide');
+            emailInputWrapper.classList.add('hide');
+            inputLogin.classList.add("hide");
+            inputIti.classList.add("hide");
+            inputText.classList.add('hide');
+        }else if(dropdownButtonThird.innerText === 'WhatsApp'){
+            otherInputWrapper.classList.add('hide');
             emailInputWrapper.classList.add('hide');
             inputLogin.classList.add("hide");
             inputIti.classList.remove("hide");
             inputText.classList.add('hide');
+            inputTel.removeEventListener('keydown', backSpace);
         }else{
+            otherInputWrapper.classList.add('hide');
             emailInputWrapper.classList.add('hide');
             inputLogin.classList.remove("hide");
             inputIti.classList.add("hide");
             inputText.classList.remove('hide');
+            inputTel.addEventListener('keydown', backSpace);
         }
 	})
 }
 //validate Email
 function validateEmail(e) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    e.target.value
     if (emailPattern.test(e.target.value)) {
         message.innerHTML = "";
         submitButton.removeAttribute('disabled');
@@ -78,8 +90,20 @@ function validateEmail(e) {
     }
 }
 emailInput.addEventListener('input', validateEmail);
-//iti phone number input !!!!!!!!!!!!!!!!!!!!!!!
+//other Input validate
+function validateOther(e) {
 
+    if (e.target.value.length > 1) {
+        message.innerHTML = "";
+        submitButton.removeAttribute('disabled');
+    } else {
+        message.style = 'color:red;';
+        message.innerHTML = "Введите верный способ связи ";
+    }
+}
+otherInput.addEventListener('input', validateOther);
+
+//iti phone number input !!!!!!!!!!!!!!!!!!!!!!!
 const iti = window.intlTelInput(inputTel, {
     initialCountry: "ru",
     separateDialCode: true,
@@ -150,6 +174,7 @@ function hideToggle(e){
         inputLogin.classList.remove("hide");
         inputIti.classList.add("hide");
         emailInputWrapper.classList.add('hide')
+        otherInputWrapper.classList.add('hide');
         //text in top of  input
         inputText.classList.remove('hide');
         inputLogin.focus();
@@ -159,6 +184,7 @@ function hideToggle(e){
         inputLogin.classList.add("hide");
         inputIti.classList.remove("hide");
         emailInputWrapper.classList.add('hide')
+        otherInputWrapper.classList.add('hide');
         //text in top of  input
         inputText.classList.add('hide');
         inputTel.focus();

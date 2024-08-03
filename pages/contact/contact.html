@@ -15,50 +15,58 @@
         <div class="form__title">Укажите ваш контакт</div>
         <form action="" id="form">
                 
-                <div class="form-group mt-4 form__wrapper">
-                    <div class="row justify-content-center w-100">
-                        <div class="input-group col-12">
-                            <input id='input__name' class="form-control " type="text" placeholder="Введите имя" name="name">
-                            <span class="name__text">Ваше имя</span>
-                            <p class="message__name"></p>
+            <div class="form-group mt-4 form__wrapper">
+                <div class="row justify-content-center w-100">
+                    <div class="input-group col-12">
+                        <input id='input__name' class="form-control " type="text" placeholder="Введите имя" name="name">
+                        <span class="name__text">Ваше имя</span>
+                        <p class="message__name"></p>
                     </div>
-                <div class="form-group mt-3 form__wrapper">
-                    <div class="row justify-content-center w-100">
-                        <div class="input-group col-12">
-                            <div class="input-group-append group__menu">
-                                <span class="upper__text">Способ получения перевода</span>
-                                <button class="dropdown__button_third btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-telegram"></i> <div>Telegram</div></button>
-                                <div class="dropdown-menu dropdown__menu_third">
-                                    <div class="search item__info">Выберите способ получения</div>
-                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-telegram"></i> <div>Telegram</div> </a>
-                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-whatsapp"></i> <div>WhatsApp</div>  </a>
-                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-envelope"></i> <div class="button__email">Email</div></a>
-                                    <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-person-circle"></i> <div>Другое</div></a>
-                                </div>
+                </div>
+            </div>
+            <div class="form-group mt-3 form__wrapper">
+                <div class="row justify-content-center w-100">
+                    <div class="input-group col-12">
+                        <div class="input-group-append group__menu">
+                            <span class="upper__text">Способ получения перевода</span>
+                            <button class="dropdown__button_third btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-telegram"></i> <div>Telegram</div></button>
+                            <div class="dropdown-menu dropdown__menu_third">
+                                <div class="search item__info">Выберите способ получения</div>
+                                <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-telegram"></i> <div>Telegram</div> </a>
+                                <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-whatsapp"></i> <div>WhatsApp</div>  </a>
+                                <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-envelope"></i> <div class="button__email">Email</div></a>
+                                <a class="dropdown-item dropdown-item_third" href="#"><i class="bi bi-person-circle"></i> <div>Другое</div></a>
                             </div>
                         </div>
                     </div>
-                    
-                    <input class="form-control " id="loginInput" type="text" placeholder="username или телефон" name="contact">
-                    <span class="input__text">@username</span>
-                    <!--email-->
-                    <div class="email__input hide">
-                        <input class="form-control " id="emailInput" type="email" placeholder="Введите данные" name="contact">
-                        <span class="email__text">Email</span>
-                    </div
-                    <!--email-->
-                    <!-- with phone number-->
-                    <div class="phone__number_wrapper hide" >
-                        <input id="phone" class='phone__input form-control' type="tel" name="phone">
-                    </div>
-                    <p id="message" class="message"></p>
-                    <!-- with phone number-->
-                    <button class="btn mt-3 form_button" id="btn" type="submit">Отправить</button>
-                    <div class="conf mt-3">
-                        <input id='confCheck' checked class="form-check-input" type="checkbox" autocomplete="on" required="required" true-value="true" value="false">
-                        <label for="confCheck" class="form-check-label"> Я соглашаюсь на обработку персональных данных  согласно  политике конфиденциальности</label>
-                    </div>
                 </div>
+                
+                <input class="form-control " id="loginInput" type="text" placeholder="username или телефон" name="contact">
+                <span class="input__text">@username</span>
+                <!--email-->
+                <div class="email__input hide">
+                    <input class="form-control " id="emailInput" type="email" placeholder="name@gmail.com" name="contact">
+                    <span class="email__text">Email</span>
+                </div>
+                <!-- email -->
+                <!-- other -->
+                <div class="other__input hide">
+                    <input class="form-control " id="otherInput" type="text" placeholder="Введите как с вами связаться" name="contact">
+                    <span class="other__text">Другое</span>
+                </div>
+                <!-- other -->
+                <!-- with phone number-->
+                <div class="phone__number_wrapper hide" >
+                    <input id="phone" class='phone__input form-control' type="tel" name="phone">
+                </div>
+                <p id="message" class="message"></p>
+                <!-- with phone number-->
+                <button class="btn mt-3 form_button" id="btn" type="submit">Отправить</button>
+                <div class="conf mt-3">
+                    <input id='confCheck' checked class="form-check-input" type="checkbox" autocomplete="on" required="required" true-value="true" value="false">
+                    <label for="confCheck" class="form-check-label"> Я соглашаюсь на обработку персональных данных  согласно  политике конфиденциальности</label>
+                </div>
+            </div>
         </form>
     </div>
         
