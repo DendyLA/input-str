@@ -1,3 +1,6 @@
+// document.addEventListener('DOMContentLoaded', function() {
+
+// }
 const inputTel = document.querySelector("#phone");
 const form = document.querySelector("#form");
 const message = document.querySelector("#message");
@@ -49,19 +52,20 @@ for(let i of dropdownMenuThird.children){
 			dropdownButtonThird.innerHTML = e.target.parentElement.innerHTML;
 		}
 
-        if(dropdownButtonThird.innerText.trim() === 'Email'){
+
+        if(dropdownButtonThird.innerHTML.includes('Email')){
             otherInputWrapper.classList.add('hide');
             emailInputWrapper.classList.remove('hide');
             inputLogin.classList.add("hide");
             inputIti.classList.add("hide");
             inputText.classList.add('hide');
-        }else if(dropdownButtonThird.innerText.trim() === 'Другое'){
+        }else if(dropdownButtonThird.innerHTML.includes('Другое')){
             otherInputWrapper.classList.remove('hide');
             emailInputWrapper.classList.add('hide');
             inputLogin.classList.add("hide");
             inputIti.classList.add("hide");
             inputText.classList.add('hide');
-        }else if(dropdownButtonThird.innerText.trim() === 'WhatsApp'){
+        }else if(dropdownButtonThird.innerHTML.includes('WhatsApp')){
             otherInputWrapper.classList.add('hide');
             emailInputWrapper.classList.add('hide');
             inputLogin.classList.add("hide");
@@ -76,6 +80,34 @@ for(let i of dropdownMenuThird.children){
             inputText.classList.remove('hide');
             inputTel.addEventListener('keydown', backSpace);
         }
+
+        // if(dropdownButtonThird.innerText.trim() === 'Email'){
+        //     otherInputWrapper.classList.add('hide');
+        //     emailInputWrapper.classList.remove('hide');
+        //     inputLogin.classList.add("hide");
+        //     inputIti.classList.add("hide");
+        //     inputText.classList.add('hide');
+        // }else if(dropdownButtonThird.innerText.trim() === 'Другое'){
+        //     otherInputWrapper.classList.remove('hide');
+        //     emailInputWrapper.classList.add('hide');
+        //     inputLogin.classList.add("hide");
+        //     inputIti.classList.add("hide");
+        //     inputText.classList.add('hide');
+        // }else if(dropdownButtonThird.innerText.trim() === 'WhatsApp'){
+        //     otherInputWrapper.classList.add('hide');
+        //     emailInputWrapper.classList.add('hide');
+        //     inputLogin.classList.add("hide");
+        //     inputIti.classList.remove("hide");
+        //     inputText.classList.add('hide');
+        //     inputTel.removeEventListener('keydown', backSpace);
+        // }else{
+        //     otherInputWrapper.classList.add('hide');
+        //     emailInputWrapper.classList.add('hide');
+        //     inputLogin.classList.remove("hide");
+        //     inputIti.classList.add("hide");
+        //     inputText.classList.remove('hide');
+        //     inputTel.addEventListener('keydown', backSpace);
+        // }
 	})
 }
 //validate Email
