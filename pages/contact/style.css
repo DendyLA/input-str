@@ -7,19 +7,27 @@
     width: 300px;
     margin: 0 auto;
 }
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .form_button{
-    border-radius: 24px;
+    border-radius: 11px;
 }
 .phone__input{
     width: 300px !important;
     color: black;
-    border-radius: 8px !important;
+    border-radius: 11px !important;
     height: 50px;
     z-index: 0 !important;
     text-align: start;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+
 }
 .phone__number_wrapper{
     margin-top: 20px;
@@ -39,9 +47,13 @@
 }
 .form-control {
     width: 300px;
-    border-radius: 8px !important;
+    border-radius: 11px !important;
     z-index: 0 !important;
-    border-color: #6c757d !important;
+    border: 2px solid #4263EB;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color:#4263EB;
 }
 .input__text{
     color: #77767B;
@@ -80,7 +92,7 @@
     margin-top: 20px;
     width: 100% !important;
     color: black;
-    border-radius: 8px !important;
+    border-radius: 11px !important;
     height: 50px;
     z-index: 0 !important;
     text-align: start;
@@ -92,7 +104,7 @@
     margin-top: 20px;
     width: 100% !important;
     color: black;
-    border-radius: 8px !important;
+    border-radius: 11px !important;
     height: 50px;
     z-index: 0 !important;
     text-align: start;
@@ -132,18 +144,25 @@
 .dropdown__button_third{
     width: 100% !important;
     color: black;
-    border-radius: 8px !important;
+    border-radius: 11px !important;
     height: 50px;
     z-index: 0 !important;
     text-align: start;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 2px solid #4263EB;
 }
-.dropdown__button_third:hover{
-    border-color: #6c757d;
+.btn-outline-secondary:hover{
+    border: 2px solid #4263EB;
+}
+.btn:disabled{
+    opacity: 1;
+}
+#btn:hover{
     background-color: white;
     color: black;
+    border-color: #4263EB;
 }
 .btn-outline-secondary.dropdown-toggle{
     background-color: white !important;
@@ -152,7 +171,9 @@
 .input-group-append{
     position: relative;
 }
-
+.message{
+    align-self: start;  
+}
 .dropdown-menu{
     position: absolute;
     top: -7px !important;

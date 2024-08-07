@@ -21,6 +21,7 @@ const otherInputWrapper = document.querySelector('.other__input');
 const dropdownButtonThird = document.querySelector('.dropdown__button_third');
 const dropdownMenuThird = document.querySelector('.dropdown__menu_third');
 
+const button = document.querySelector('.form_button');
 
 let validName = false;
 //validate Name
@@ -115,7 +116,7 @@ function validateEmail(e) {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (emailPattern.test(e.target.value)) {
         message.innerHTML = "";
-        submitButton.removeAttribute('disabled');
+        // submitButton.removeAttribute('disabled');
     } else {
         message.style = 'color:red;';
         message.innerHTML = "Введите правильный Email ";
@@ -127,7 +128,7 @@ function validateOther(e) {
 
     if (e.target.value.length > 1) {
         message.innerHTML = "";
-        submitButton.removeAttribute('disabled');
+        // submitButton.removeAttribute('disabled');
     } else {
         message.style = 'color:red;';
         message.innerHTML = "Введите верный способ связи ";
@@ -220,8 +221,7 @@ function hideToggle(e){
         //text in top of  input
         inputText.classList.add('hide');
         inputTel.focus();
-        const submitButton = document.getElementById("btn");
-        submitButton.setAttribute('disabled', 'true'); // Disable button initially
+
     }
 }
 function backSpace(e){
@@ -249,26 +249,26 @@ function toggleHideClass(event) {
     // Check inputA value length and update button state
     
     if (inputLogin.value.length < 5 && !inputLogin.classList.contains('hide') && !digitPlusRegex.test(firstCharLogin)) {
-        submitButton.setAttribute('disabled', 'true');// Disable button if less than 5 characters
+        // submitButton.setAttribute('disabled', 'true');// Disable button if less than 5 characters
         message.style = 'color:red;';
         message.innerHTML = "Введите правильный Логин ";
     } else {
-        submitButton.removeAttribute('disabled'); // Enable button if 5 or more characters
+        // submitButton.removeAttribute('disabled'); // Enable button if 5 or more characters
         message.innerHTML = "";
     }
     
     if (!iti.isValidNumber() && inputLogin.classList.contains('hide')) {
-        submitButton.setAttribute('disabled', 'true');
+        // submitButton.setAttribute('disabled', 'true');
         message.style = 'color:red;';
         message.innerHTML = "Введите верный номер";
         return false;
     }else if(iti.isValidNumber() && inputLogin.classList.contains('hide')){
-        submitButton.removeAttribute('disabled'); // Enable button if 5 or more characters
+        // submitButton.removeAttribute('disabled'); // Enable button if 5 or more characters
         message.innerHTML = "";
     }
 }
-const submitButton = document.getElementById("btn");
-submitButton.setAttribute('disabled', 'true'); // Disable button initially
+// const submitButton = document.getElementById("btn");
+// submitButton.setAttribute('disabled', 'true'); // Disable button initially
 
 
 
@@ -278,14 +278,17 @@ inputTel.addEventListener("input", toggleHideClass);
 
 //validate Form
 
-form.addEventListener('submit', e => {
+button.addEventListener('click', e => {
     if(validName){
         return true
     }else {
+        console.log('ab')
         e.preventDefault();
         messageName.textContent = "Введите имя";
         messageName.style.color = "red";
-        submitButton.removeAttribute('disabled');
+        // submitButton.removeAttribute('disabled');
+        message.textContent = 'Введите верные данные'
+        message.style.color = "red";
         return false
     }
 

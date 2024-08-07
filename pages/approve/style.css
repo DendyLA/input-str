@@ -81,8 +81,9 @@
     margin-top: 15px;
 }
 .btn:hover{
-    background: #7890ec;
-    color: white;
+    background-color: white;
+    color: black;
+    border-color: #4263EB;
 }
 .btn__support{
     width: 533px;
