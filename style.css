@@ -68,12 +68,11 @@ label{
     margin-left: -110px;
 }
 input{
-    /* width: 413px !important;
-    height: 68px !important; */
+   
     border-top-width: 1px !important;
     border-bottom-width: 1px !important;
     border-left-width: 1px !important;
-    border-radius: 11px !important;
+    border-radius: 5px !important;
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
     z-index: 0 !important;
@@ -139,17 +138,17 @@ input:focus, input:active{
     transform: none !important;
 }
 .form-control{
-    height: 50px !important;
+    height: 68px !important;
 }
 .dropdown__button_first, .dropdown__button_second{
     width: 120px !important;
-    height: 50px;
+    height: 68px;
     border: none;
     border-top: 1px solid ;
     border-right: 1px solid ;
     border-bottom: 1px solid ;
-    border-top-right-radius: 11px !important;
-    border-bottom-right-radius: 11px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
     border-color: #A2A0A8 !important;
     display: flex;
     align-items: center;
@@ -217,6 +216,7 @@ input:focus, input:active{
 .button__link{
     display: block;
     width: 200px;
+    height: 50px;
     margin-top: 20px;
 }
 .form__footer a{
