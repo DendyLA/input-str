@@ -58,7 +58,7 @@
     color: rgba(12, 32, 115, 0.5);
 }
 .amount__number{
-    font-size: 46px;
+    font-size: 40px;
     color: #000000;
     width: 200px;
     text-align: center;
@@ -101,7 +101,7 @@
     left: -20px;
 }
 .active.choice__switch{
-    border: 2px solid #4263EB;
+    border: 1px solid #4263EB;
 }
 .active .choice__item_title{
     color: #15141F;
