@@ -277,9 +277,9 @@ async function calculateSend(e){
 	
 	let finalData = parseInt(val) * exchangeCount
 	const percent = parseInt(val) * 0.1;
-	commision.innerHTML = percent.toFixed();
+	commision.innerHTML = formatNumber(percent.toFixed());
 	commision.parentElement.lastChild.nodeValue = ' '+ currency;
-	totalElem.innerHTML = parseInt(val) + parseInt(percent.toFixed());
+	totalElem.innerHTML = formatNumber(parseInt(val) + parseInt(percent.toFixed()));
 	totalElem.parentElement.lastChild.nodeValue = ' '+ currency;
 	// finalData = finalData - parseInt(percent);
 	
@@ -331,9 +331,9 @@ async function calculateTake(e){
 	//formul for the input field currency and precent
 	let finalData = parseInt(val) * exchangeCount;
 	const percent = parseInt(removeSpaces(sendInput.value)) * 0.1;
-	commision.innerHTML = percent.toFixed();
+	commision.innerHTML = formatNumber(percent.toFixed());
 	commision.parentElement.lastChild.nodeValue = ' '+ sendCurrency;
-	totalElem.innerHTML = parseInt(removeSpaces(sendInput.value)) + parseInt(percent.toFixed());
+	totalElem.innerHTML = formatNumber(parseInt(removeSpaces(sendInput.value)) + parseInt(percent.toFixed()));
 	totalElem.parentElement.lastChild.nodeValue = ' '+ sendCurrency;
 	// finalData = finalData + parseInt(percent);
 
@@ -392,9 +392,9 @@ window.onload = async function() {
 	
 	let finalData = parseInt(val) * exchangeCount
 	const percent = parseInt(val) * 0.1;
-	commision.innerHTML = percent.toFixed();
+	commision.innerHTML = formatNumber(percent.toFixed());
 	commision.parentElement.lastChild.nodeValue = ' '+ currency;
-	totalElem.innerHTML = parseInt(val) + parseInt(percent.toFixed());
+	totalElem.innerHTML = formatNumber(parseInt(val) + parseInt(percent.toFixed()));
 	totalElem.parentElement.lastChild.nodeValue = ' '+currency;
 	// finalData = finalData - parseInt(percent);
 
