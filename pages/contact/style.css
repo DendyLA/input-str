@@ -48,7 +48,7 @@
 
 .form-control:focus {
     box-shadow: none;
-    border-color:#A2A0A8;
+    border:1px solid #A2A0A8 !important;
 }
 .input__text{
     color: #77767B;
@@ -95,12 +95,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border:1px solid #A2A0A8 !important;
 }
 #loginInput{
     margin-top: 20px;
     width: 100% !important;
     color: black;
-    border-radius: 11px !important;
+    border-radius: 5px !important;
     height: 50px;
     z-index: 0 !important;
     text-align: start;
@@ -117,10 +118,11 @@
     width: 284px;
 }
 #btn{
-    background-color: #4263EA;
+    background-color: #4263EB;
     color: white;
     width: 100%;
     height: 60px;
+    border-radius: 5px;
 }
 .btn__link{
     width: 100%;
@@ -146,14 +148,14 @@
 .dropdown__button_third{
     width: 100% !important;
     color: black;
-    border-radius: 11px !important;
+    border-radius: 5px !important;
     height: 68px;
     z-index: 0 !important;
     text-align: start;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #A2A0A8;
+    border: 1px solid #A2A0A8 !important;
 }
 
 .btn-outline-secondary:hover{
