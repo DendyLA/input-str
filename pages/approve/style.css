@@ -1,0 +1,140 @@
+*{
+    box-sizing: border-box;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.title{
+    font-weight: 700;
+    font-size: 23px;
+    color: #4263EB;
+}
+.line{
+    display: block;
+    width: 533px;
+    height: 0px;
+    border: 1px solid #A2A0A8;
+    margin-top: 6px;
+}
+
+.header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 50px;
+    width: 533px;
+}
+.header__main{
+    margin-left: 13px;
+}
+.header__info{
+    margin-left: 130px;
+}
+.header__title{
+    font-weight: 600;
+    font-size: 20px;
+    color: #42474D;
+}
+.header__code{
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(12, 32, 115, 0.5);
+}
+.header__info{
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(12, 32, 115, 0.5);
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.main__title{
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: #42474D;
+    margin-top: 55px;
+}
+.main__text{
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    color: #42474D;
+    margin-top: 55px;
+}
+.btn{
+    width: 533px;
+    height: 56px;
+    background: #4263EB;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+.btn:hover{
+    background: #7890ec;
+    color: white;
+}
+.btn__support{
+    width: 533px;
+    height: 56px;
+    background: #FFFFFF;
+    border: 1px solid #4263EB;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #4263EB;
+    margin-top: 60px;
+}
+.btn__support:hover{
+    background: #FFFFFF;
+    border: 1px solid #899ce9;
+    color: #899ce9;
+}
+@media (max-width: 530px) {
+    .line{
+        display: none;
+    }
+    .header{
+        width: 320px;
+    }
+    .header__main{
+        margin-left: 13px;
+    }
+    .header__info{
+        margin-left: 15px;
+        font-size: 12px;
+    }
+    .header__title{
+        font-size: 14px;
+    }
+    .header__code{
+        font-size: 14px;
+    }
+    .main__title{
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
+        color: #A2A0A8;
+    }
+    .main__text{
+        font-size: 16px;
+        text-align: center;
+        color: #42474D;
+        margin-top: 20px;
+    }
+    .btn{
+        width: 320px;
+        font-size: 16px;
+    }
+}

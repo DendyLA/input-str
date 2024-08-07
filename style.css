@@ -215,14 +215,34 @@ input:focus, input:active{
 .fi-usdt{
     background-image: url('img/usdt.png');
 }
-
+.logo{
+    display: none;
+}
 @media (max-width: 420px) {
+    body{
+        position: relative;
+    }
+    .logo{
+        position: absolute;
+        left: 20px;
+        display: block;
+        background-image: url(./img/logo.png);
+        width: 26px;
+        height: 28px;
+        top: 10px;
+    }
     .title{
         display: block;
         color: white;
         text-align: center;
         margin-top: 20px;
         font-size: 20px;
+        line-height: 20px;
+
+    }
+    .title span{
+        font-size: 14px;
+        margin-top: 0px;
     }
     .container{
         background-color: white;
@@ -233,4 +253,73 @@ input:focus, input:active{
     body{
         background-color: #4962E3;
     }
+}
+
+.footer__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.commision__upper span{
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6px;
+    color: white;
+    position: absolute;
+    top: 0px;
+    left: 75px;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background-color: #4263EB;
+    z-index: 2 !important;
+    cursor: pointer !important;   
+}
+.commision__upper span:hover{
+    background-color: #5c6ba8;
+}
+.commision__info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 20px;
+    padding: 3px;
+    font-size: 7px;
+    background-color: #495057;
+    border-radius:20px;
+    color: white;
+    position: absolute;
+    top: -25px;
+    right: -89px;
+    z-index: 3 !important;
+}
+.commision__upper{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: -8px;
+    top: -20px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.commision__wrapper{
+    position: relative;
+}
+
+.all__wrapper{
+    position: relative;
+}
+.all__upper{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: -8px;
+    top: -19px;
+    padding: 0px 8px;
+    z-index: 1 !important;
 }

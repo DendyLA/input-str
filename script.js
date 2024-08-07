@@ -5,14 +5,19 @@ const dropdownButtonSecond = document.querySelector('.dropdown__button_second');
 const dropdownMenuFirst = document.querySelector('.dropdown__menu_first');
 const dropdownMenuSecond = document.querySelector('.dropdown__menu_second');
 
-const dropdownButtonThird = document.querySelector('.dropdown__button_third');
-const dropdownMenuThird = document.querySelector('.dropdown__menu_third');
+const commision = document.querySelector('.commision span');
+const commisionUpper = document.querySelector('.commision__upper span');
+const commisionInfo = document.querySelector('.commision__info');
 
-const dropdownButtonFourth = document.querySelector('.dropdown__button_fourth');
-const dropdownMenuFourth = document.querySelector('.dropdown__menu_fourth');
+const totalElem = document.querySelector('.all span')
+// const dropdownButtonThird = document.querySelector('.dropdown__button_third');
+// const dropdownMenuThird = document.querySelector('.dropdown__menu_third');
 
-const dropdownButtonFifth = document.querySelector('.dropdown__button_fifth');
-const dropdownMenuFifth = document.querySelector('.dropdown__menu_fifth');
+// const dropdownButtonFourth = document.querySelector('.dropdown__button_fourth');
+// const dropdownMenuFourth = document.querySelector('.dropdown__menu_fourth');
+
+// const dropdownButtonFifth = document.querySelector('.dropdown__button_fifth');
+// const dropdownMenuFifth = document.querySelector('.dropdown__menu_fifth');
 
 const message = document.querySelectorAll('.message');
 //items
@@ -106,7 +111,7 @@ searchInputSecond.addEventListener('input', () => {
 function redirectToNewPage(e) {
 	e.preventDefault();
 	const currency = dropdownButtonFirst.innerText.trim();
-	if(sendInput.value == '' || takeInput.value == '' || currency == 'Выберите...' || dropdownButtonFourth.innerText == 'Выбрать'){
+	if(sendInput.value == '' || takeInput.value == '' || currency == 'Выберите...'){
 		for(let i of message){
 			i.classList.remove('hide');
 		}
@@ -193,47 +198,47 @@ for(let i of dropdownMenuSecond.children){
 }
 
 //third
-dropdownButtonThird.innerHTML = 'Выбрать';
-for(let i of dropdownMenuThird.children){
-	i.addEventListener('click', (e) => {
-		e.preventDefault();
-		if(e.target.tagName === 'A'){
-			dropdownButtonThird.innerHTML = e.target.innerHTML;
-		}else if(e.target === search[1]){
-			return
-		}else{
-			dropdownButtonThird.innerHTML = e.target.parentElement.innerHTML;
-		}
-	})
-}
-dropdownButtonFourth.innerHTML = 'Выбрать';
-//fourth
-for(let i of dropdownMenuFourth.children){
-	i.addEventListener('click', (e) => {
-		e.preventDefault();
-		if(e.target.tagName === 'A'){
-			dropdownButtonFourth.innerHTML = e.target.innerHTML;
-		}else if(e.target === search[0]){
-			return
-		}else{
-			dropdownButtonFourth.innerHTML = e.target.parentElement.innerHTML;
-		}
-	})
-}
-//fifth
-dropdownButtonFifth.innerHTML = 'Выбрать';
-for(let i of dropdownMenuFifth.children){
-	i.addEventListener('click', (e) => {
-		e.preventDefault();
-		if(e.target.tagName === 'A'){
-			dropdownButtonFifth.innerHTML = e.target.innerHTML;
-		}else if(e.target === search[2]){
-			return
-		}else{
-			dropdownButtonFifth.innerHTML = e.target.parentElement.innerHTML;
-		}
-	})
-}
+// dropdownButtonThird.innerHTML = 'Выбрать';
+// for(let i of dropdownMenuThird.children){
+// 	i.addEventListener('click', (e) => {
+// 		e.preventDefault();
+// 		if(e.target.tagName === 'A'){
+// 			dropdownButtonThird.innerHTML = e.target.innerHTML;
+// 		}else if(e.target === search[1]){
+// 			return
+// 		}else{
+// 			dropdownButtonThird.innerHTML = e.target.parentElement.innerHTML;
+// 		}
+// 	})
+// }
+// dropdownButtonFourth.innerHTML = 'Выбрать';
+// //fourth
+// for(let i of dropdownMenuFourth.children){
+// 	i.addEventListener('click', (e) => {
+// 		e.preventDefault();
+// 		if(e.target.tagName === 'A'){
+// 			dropdownButtonFourth.innerHTML = e.target.innerHTML;
+// 		}else if(e.target === search[0]){
+// 			return
+// 		}else{
+// 			dropdownButtonFourth.innerHTML = e.target.parentElement.innerHTML;
+// 		}
+// 	})
+// }
+// //fifth
+// dropdownButtonFifth.innerHTML = 'Выбрать';
+// for(let i of dropdownMenuFifth.children){
+// 	i.addEventListener('click', (e) => {
+// 		e.preventDefault();
+// 		if(e.target.tagName === 'A'){
+// 			dropdownButtonFifth.innerHTML = e.target.innerHTML;
+// 		}else if(e.target === search[2]){
+// 			return
+// 		}else{
+// 			dropdownButtonFifth.innerHTML = e.target.parentElement.innerHTML;
+// 		}
+// 	})
+// }
 
 //take data !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 async function getExchange(currency){
@@ -248,13 +253,11 @@ async function getExchange(currency){
 	}catch(error){
 		console.error(error.message);
 	}
-	
-	
-	
+
 }
 
 //calculate input-event
-
+let firstToSecondExchange = 0;
 async function calculateSend(e){
 	const currency = dropdownButtonFirst.innerText.trim();
 	const data = await getExchange(currency.toLowerCase());
@@ -273,8 +276,13 @@ async function calculateSend(e){
 	//formul for the input field currency and precent
 	
 	let finalData = parseInt(val) * exchangeCount
-	const percent = finalData * 0.1;
-	finalData = finalData - percent;
+	const percent = parseInt(val) * 0.1;
+	commision.innerHTML = percent.toFixed();
+	commision.parentElement.lastChild.nodeValue = ' '+ currency;
+	totalElem.innerHTML = parseInt(val) + parseInt(percent.toFixed());
+	totalElem.parentElement.lastChild.nodeValue = ' '+ currency;
+	// finalData = finalData - parseInt(percent);
+	
 
 	if(dropdownButtonSecond.innerText == 'BTC'){
 		takeInput.value = formatNumber(finalData.toFixed(5));
@@ -291,6 +299,15 @@ async function calculateSend(e){
 	}
 
 	e.target.value = formatNumber(e.target.value);
+
+	firstToSecondExchange = exchangeCount;
+	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
+	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
+	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
+	window.localStorage.setItem('commision', commision.innerHTML);
+	window.localStorage.setItem('take', takeInput.value);
+	window.localStorage.setItem('total', parseInt(totalElem.innerHTML))
+
 }
 
 sendInput.addEventListener('input', calculateSend);
@@ -312,9 +329,13 @@ async function calculateTake(e){
 	const exchangeCount = data[sendCurrency.toLowerCase()]
 
 	//formul for the input field currency and precent
-	let finalData = parseInt(val) * exchangeCount
-	const percent = finalData * 0.1;
-	finalData = finalData + percent;
+	let finalData = parseInt(val) * exchangeCount;
+	const percent = parseInt(removeSpaces(sendInput.value)) * 0.1;
+	commision.innerHTML = percent.toFixed();
+	commision.parentElement.lastChild.nodeValue = ' '+ sendCurrency;
+	totalElem.innerHTML = parseInt(removeSpaces(sendInput.value)) + parseInt(percent.toFixed());
+	totalElem.parentElement.lastChild.nodeValue = ' '+ sendCurrency;
+	// finalData = finalData + parseInt(percent);
 
 	if(dropdownButtonFirst.innerText == 'BTC'){
 		sendInput.value = finalData.toFixed(5);
@@ -330,6 +351,14 @@ async function calculateTake(e){
 		}
 	}
 	e.target.value = formatNumber(e.target.value);
+
+
+	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
+	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
+	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
+	window.localStorage.setItem('commision', commision.innerHTML);
+	window.localStorage.setItem('take', takeInput.value);
+	window.localStorage.setItem('total', parseInt(totalElem.innerHTML))
 }
 
 takeInput.addEventListener('input', calculateTake);
@@ -362,8 +391,12 @@ window.onload = async function() {
 	//formul for the input field currency and precent
 	
 	let finalData = parseInt(val) * exchangeCount
-	const percent = finalData * 0.1;
-	finalData = finalData - percent;
+	const percent = parseInt(val) * 0.1;
+	commision.innerHTML = percent.toFixed();
+	commision.parentElement.lastChild.nodeValue = ' '+ currency;
+	totalElem.innerHTML = parseInt(val) + parseInt(percent.toFixed());
+	totalElem.parentElement.lastChild.nodeValue = ' '+currency;
+	// finalData = finalData - parseInt(percent);
 
 
 	takeInput.value = formatNumber(finalData.toFixed(2));
@@ -377,6 +410,34 @@ window.onload = async function() {
 
 	sendInput.value = formatNumber(sendInput.value);
 
-	
-	
+	firstToSecondExchange = exchangeCount;
+	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
+	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
+	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
+	window.localStorage.setItem('commision', commision.innerHTML);
+	window.localStorage.setItem('take', takeInput.value);
+	window.localStorage.setItem('total', parseInt(totalElem.innerHTML))
 };
+
+
+//commision info
+
+commisionUpper.addEventListener('mouseenter', (e) => {
+	commisionInfo.classList.remove('hide')
+	console.log('a')
+})
+
+commisionUpper.addEventListener('mouseleave', (e) => {
+	commisionInfo.classList.add('hide')
+	console.log('b')
+})
+
+commisionUpper.addEventListener('touchstart', (e) => {
+	commisionInfo.classList.remove('hide')
+	console.log('a')
+})
+
+commisionUpper.addEventListener('touchend', (e) => {
+	commisionInfo.classList.add('hide')
+	console.log('b')
+})
