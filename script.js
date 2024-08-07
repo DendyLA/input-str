@@ -306,7 +306,7 @@ async function calculateSend(e){
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
 	window.localStorage.setItem('commision', commision.innerHTML);
 	window.localStorage.setItem('take', takeInput.value);
-	window.localStorage.setItem('total', parseInt(totalElem.innerHTML))
+	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML) ))
 
 }
 
@@ -358,7 +358,7 @@ async function calculateTake(e){
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
 	window.localStorage.setItem('commision', commision.innerHTML);
 	window.localStorage.setItem('take', takeInput.value);
-	window.localStorage.setItem('total', parseInt(totalElem.innerHTML))
+	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML)))
 }
 
 takeInput.addEventListener('input', calculateTake);
@@ -416,7 +416,7 @@ window.onload = async function() {
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
 	window.localStorage.setItem('commision', commision.innerHTML);
 	window.localStorage.setItem('take', takeInput.value);
-	window.localStorage.setItem('total', parseInt(totalElem.innerHTML))
+	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML)))
 };
 
 
