@@ -159,6 +159,7 @@
     align-items: center;
     border: 1px solid #A2A0A8;
 }
+
 .btn-outline-secondary:hover{
     border: 1px solid #A2A0A8;
 }
@@ -184,7 +185,7 @@
     position: absolute;
     top: -7px !important;
     left: 0 !important;
-    width: 300px !important;
+    width: 100% !important;
     transform: none !important;
     padding: 0 0 5px 0;
 }
