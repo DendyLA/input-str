@@ -126,7 +126,7 @@ input:focus, input:active{
     box-shadow: none !important;
 }
 .dropdown-menu{
-    width: 92%;
+    width: 540px;
     overflow: hidden;
     padding-top: 0;
     max-height: 350px;
@@ -134,8 +134,8 @@ input:focus, input:active{
     overflow-x: hidden;
     
     position: absolute;
-    left: 13px !important;
-    top: -7px !important;
+    left: -1px !important;
+    top: 0px !important;
     transform: none !important;
 }
 .form-control{
@@ -242,7 +242,19 @@ input:focus, input:active{
     .row{
         width: 320px;
     }
-
+    .dropdown-menu{
+        width: 325px;
+        overflow: hidden;
+        padding-top: 0;
+        max-height: 350px;
+        overflow: scroll;
+        overflow-x: hidden;
+        
+        position: absolute;
+        left: -1px !important;
+        top: -0px !important;
+        transform: none !important;
+    }
     .calculator{
 
         margin-top: 60px;
