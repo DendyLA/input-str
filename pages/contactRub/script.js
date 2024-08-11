@@ -23,6 +23,8 @@ const dropdownMenuThird = document.querySelector('.dropdown__menu_third');
 
 const button = document.querySelector('.form_button');
 
+const linkBtn = document.querySelector('.btn__link')
+
 let validName = false;
 //validate Name
 inputName.addEventListener('input', e => {
@@ -280,6 +282,7 @@ inputTel.addEventListener("input", toggleHideClass);
 
 button.addEventListener('click', e => {
     if(validName){
+        
         return true
     }else {
         console.log('ab')
@@ -298,4 +301,15 @@ window.onload = function() {
     inputName.value = '';
     inputTel.value = '';
     inputLogin.value = '';
+
+    
+    if(localStorage.getItem('sendCurrency') === 'RUB'){
+        linkBtn.setAttribute('href', '../choiсeSend/choiсe.html')
+    }else if(localStorage.getItem('sendCurrency') === 'USD' || localStorage.getItem('sendCurrency') === 'EUR'){
+        linkBtn.setAttribute('href', '../choiсeSend/choiсe.html')
+    }else if(localStorage.getItem('sendCurrency') === 'BTC' || localStorage.getItem('sendCurrency') === 'USDT'){
+        linkBtn.setAttribute('href', '../takeInfo/takeInfo.html')
+    }else{
+        linkBtn.setAttribute('href', '../approve/approve.html')
+    }
 }

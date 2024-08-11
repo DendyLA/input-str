@@ -9,6 +9,8 @@ const commision = document.querySelector('.commision span');
 const commisionUpper = document.querySelector('.commision__upper span');
 const commisionInfo = document.querySelector('.commision__info');
 
+// const link = document.querySelector('.button__link');
+
 const totalElem = document.querySelector('.all span')
 // const dropdownButtonThird = document.querySelector('.dropdown__button_third');
 // const dropdownMenuThird = document.querySelector('.dropdown__menu_third');
@@ -116,7 +118,7 @@ function redirectToNewPage(e) {
 			i.classList.remove('hide');
 		}
 	}else{
-		window.location.href = "pages/contact/contact.html"; 
+		window.location.href = "pages/contactRub/contact.html"; 
 	}
 	
     
@@ -304,10 +306,12 @@ async function calculateSend(e){
 	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
 	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
-	window.localStorage.setItem('commision', commision.innerHTML);
+	window.localStorage.setItem('commision', 0.1);
 	window.localStorage.setItem('take', takeInput.value);
 	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML) ))
 
+	//send user to current page
+	
 }
 
 sendInput.addEventListener('input', calculateSend);
@@ -356,9 +360,12 @@ async function calculateTake(e){
 	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
 	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
-	window.localStorage.setItem('commision', commision.innerHTML);
+	window.localStorage.setItem('commision', 0.1);
 	window.localStorage.setItem('take', takeInput.value);
 	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML)))
+
+	//send user to current page
+	
 }
 
 takeInput.addEventListener('input', calculateTake);
@@ -414,9 +421,12 @@ window.onload = async function() {
 	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
 	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
-	window.localStorage.setItem('commision', commision.innerHTML);
+	window.localStorage.setItem('commision', 0.1);
 	window.localStorage.setItem('take', takeInput.value);
 	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML)))
+
+	//send user to current page
+	
 };
 
 

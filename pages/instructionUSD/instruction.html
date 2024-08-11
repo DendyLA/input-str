@@ -22,45 +22,52 @@
             <span class="underline"></span>
         </div>
         <div class="main">
-            <div class="main__title">Перейти в Ваше банковское приложение</div>
-            <a href="#" class="bank__link"><div class="button__bank">БАНК</div></a>
             
-            <div class="main__title">Или используйте QR - код</div>
-            <div class="qr__code">
-                <img src="../../img/qr.png" alt="qr-code" class="qr__code-img">
-            </div>
-            
-
-            <div class="main__title">Или введите реквизиты вручную</div>
+            <div class="main__title">Для оплаты используйте следующие реквизиты</div>
             <div class="main__item">
                 <div class="wrapper">
-                    <i class="bi bi-credit-card icon"></i>
                     <div class="main__info_wrapper">
-                        <div class="main__item_title">Перевод на карту</div>
+                        <div class="main__item_title"></div>
                         <div class="main__item_info">
-                            <div class="main__item_text">Используйте номер карты </div>
-                            <div class="main__item_card">1234 5678 2345 8765</div>
+                            <div>
+                                <div class="main__item_text">Beneficiary:</div>
+                                <div class="main__item_card">RRRRRR SSSSSSSSS</div>
+                            </div>
+                            <i class="bi bi-copy copy" id="copy1"></i>
+                        </div>
+                        
+                        <div class="main__item_info">
+                            <div>
+                                <div class="main__item_text">IBAN: </div>
+                                <div class="main__item_iban">MD98797987876876</div>
+                            </div>
+                            
+                            <i class="bi bi-copy copy" id="copy2"></i>
+                        </div>
+                        <div class="main__item_info">
+                            <div>
+                                <div class="main__item_text"> Bank: </div>
+                                <div class="main__item_bank">Raiffeisen Bank International AG, Vienna, Austria </div>
+                            </div>
+                            
+                            <i class="bi bi-copy copy" id="copy3"></i>
+                        </div>
+                        <div class="main__item_info">
+                            <div>
+                                <div class="main__item_text"> SWIFT code :</div>
+                                <div class="main__item_swift">RZBAATWW </div>
+                            </div>
+                            
+                            <i class="bi bi-copy copy" id="copy4"></i>
                         </div>
                     </div>
                 </div>
-                <i class="bi bi-copy copy" id="copy1"></i>
+                
             </div>
-            <div class="main__item">
-                <div class="wrapper">
-                    <i class="bi bi-globe icon"></i>
-                    <div class="main__info_wrapper">
-                        <div class="main__item_title">Система Быстрых Платежей (СБП)</div>
-                        <div class="main__item_info">
-                            <div class="main__item_text">Используйте номер <span>+7 916 123-5678</span>  </div>
-                            <div class="main__item_card">Имя: Иванова Мария </div>
-                        </div>
-                    </div>
-                </div>
-                <i class="bi bi-copy copy" id="copy2"></i>
-            </div>
+            
             <div class="code">
                 <div class="code__text">В поле “Комментарий” укажите: <span>234-876</span></div>
-                <i  class="bi bi-copy copy" id="copy3"></i>
+                <i  class="bi bi-copy copy" id="copy5"></i>
             </div>
             <div class="footer__info">После оплаты нажмите на кнопку <br>“Оплачено”</div>
             <a href="../approve/approve.html"><button class="btn">Оплачено</button></a>

@@ -14,7 +14,7 @@
     <div class="title">Способ выдачи</div>
     <div class="container">
         <div class="amount">
-            <div class="amount__title">Будет отправлено</div>
+            <div class="amount__title">Будет выдано</div>
             <div class="amount__total">
                 <div class="amount__minus">-</div>
                 <input class="amount__number" type="text" value="50000"></input>
@@ -24,30 +24,30 @@
         </div>
         <div class="footer">
             <div class="take__number_wrapper">
-                <div class="take__number_upper">К выдаче</div>
+                <div class="take__number_upper">К отправке</div>
                 <div class="take__number"></div>
             </div>
-            <a href="../instruction/instruction.html"><button class="btn">Отправить</button></a>
+            <a href="../takeInfo/takeInfo.html"><button class="btn">Отправить</button></a>
         </div>
         <div class="choice__wrapper">
-            <div class="choice__title">Выберите способ выдачи</div>
-            <div class="custom-control custom-switch choice__switch active">
+            <div class="choice__title">Выберите способ отправки перевода</div>
+            <div class="custom-control custom-switch choice__switch  toBank">
                 <div class="choice__text">
                     <div class="choice__item_title">Перевод на счет в банке</div>
                     <div class="choice__item_info">Зачисление в течение 0-3 дней</div>
                 </div>
-                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch1" checked>
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch1" >
                 <label class="custom-control-label choice__switch_item" for="customSwitch1"></label>
             </div>
-            <div class="custom-control custom-switch choice__switch">
+            <div class="custom-control custom-switch choice__switch fromCard">
                 <div class="choice__text">
                     <div class="choice__item_title">Перевод на карту</div>
                     <div class="choice__item_info">Зачисление в течение 1 часа <br> Комиссия +2%</div>
                 </div>
-                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch2">
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch2" >
                 <label class="custom-control-label choice__switch_item" for="customSwitch2"></label>
             </div>  
-            <div class="custom-control custom-switch choice__switch">
+            <div class="custom-control custom-switch choice__switch payPal">
                 <div class="choice__text">
                     <div class="choice__item_title">PayPal, Zelle и другие системы</div>
                     <div class="choice__item_info">Зачисление в течение 15 минут <br> Комиссия +2%</div>
@@ -55,7 +55,7 @@
                 <input type="checkbox" class="custom-control-input switch__input" id="customSwitch3">
                 <label class="custom-control-label choice__switch_item" for="customSwitch3"></label>
             </div> 
-            <div class="custom-control custom-switch choice__switch">
+            <div class="custom-control custom-switch choice__switch crypto">
                 <div class="choice__text">
                     <div class="choice__item_title">Криптовалютой</div>
                     <div class="choice__item_info">Зачисление в течение 15 минут <br> Комиссия +4%</div>
@@ -63,7 +63,7 @@
                 <input type="checkbox" class="custom-control-input switch__input" id="customSwitch4">
                 <label class="custom-control-label choice__switch_item" for="customSwitch4"></label>
             </div>  
-            <div class="custom-control custom-switch choice__switch">
+            <div class="custom-control custom-switch choice__switch cash">
                 <div class="choice__text">
                     <div class="choice__item_title">Наличными</div>
                     <div class="choice__item_info">Зачисление в течение 1 часа <br> Комиссия +4%</div>
@@ -71,7 +71,7 @@
                 <input type="checkbox" class="custom-control-input switch__input" id="customSwitch5">
                 <label class="custom-control-label choice__switch_item" for="customSwitch5"></label>
             </div>
-            <div class="custom-control custom-switch choice__switch">
+            <div class="custom-control custom-switch choice__switch other">
                 <div class="choice__text">
                     <div class="choice__item_title">Другой способ</div>
                     <div class="choice__item_info">Обсудить с консультантом</div>
@@ -81,7 +81,7 @@
             </div> 
         </div>
         
-        
+        <a href="../choiсeSend/choiсe.html" class="back__link"><div class="choice__title">Назад</div></a>
     </div>
         
 

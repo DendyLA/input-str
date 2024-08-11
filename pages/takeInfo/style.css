@@ -1,0 +1,278 @@
+.form__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 533px;
+    margin: 0 auto;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form_button{
+    border-radius: 11px;
+}
+.phone__input{
+    width: 100% !important;
+    height: 68px !important;
+    color: black;
+    border-radius: 11px !important;
+    height: 50px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.phone__number_wrapper{
+    margin-top: 20px;
+    width: 533px;
+    height: 68px;
+}
+.iti{
+    width: 100%;
+}
+.item__info{
+    padding: 0 12px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: #EEEEF0;
+    color: #495057;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border:1px solid #A2A0A8 !important;
+}
+.input__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: 10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.name__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: 10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.hide{
+    display: none !important;
+}
+
+.form__title{
+    text-align: center;
+    color: #4263EA;
+    margin-top: 15px;
+    font-size: 25px;
+}
+.form_button{
+    width: 300px;
+}
+.form-control{
+    margin-top: 20px;
+    width: 100% !important;
+    height: 68px !important;
+    color: black;
+    border-radius: 5px !important;
+    height: 50px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border:1px solid #A2A0A8 !important;
+}
+#loginInput{
+    margin-top: 20px;
+    width: 100% !important;
+    color: black;
+    border-radius: 5px !important;
+    height: 50px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form-check-label{
+    width: 100%;
+    font-size: 12px;
+}
+.conf{
+    margin-top: 20px;
+    width: 284px;
+}
+#btn{
+    background-color: #4263EB;
+    color: white;
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+}
+.btn__link{
+    width: 100%;
+
+}
+.group__menu{
+    width: 100% !important;
+}
+.input-group{
+    padding: 0 !important;
+}
+.upper__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: -10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+    cursor: pointer !important;
+}
+.dropdown__button_third{
+    width: 100% !important;
+    color: black;
+    border-radius: 5px !important;
+    height: 68px;
+    z-index: 0 !important;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #A2A0A8 !important;
+}
+
+.btn-outline-secondary:hover{
+    border: 1px solid #A2A0A8;
+}
+.btn:disabled{
+    opacity: 1;
+}
+#btn:hover{
+    background-color: white;
+    color: black;
+    border-color: #4263EB;
+}
+.btn-outline-secondary.dropdown-toggle{
+    background-color: white !important;
+    color: black !important;
+}
+.input-group-append{
+    position: relative;
+}
+.message{
+    align-self: start;  
+}
+.dropdown-menu{
+    position: absolute;
+    top: -7px !important;
+    left: 0 !important;
+    width: 100% !important;
+    transform: none !important;
+    padding: 0 0 5px 0;
+}
+.btn-outline-secondary.dropdown-toggle:focus{
+    box-shadow: none !important;
+}
+.dropdown__button_third div{
+    margin-left: -390px;
+}
+.dropdown__button_third .button__email{
+    margin-left: -180px;
+}
+.dropdown-item div{
+    display: inline;
+}
+.email__input{
+    width: 100%;
+    position: relative;
+}
+.other__input{
+    width: 100%;
+    position: relative;
+}
+.email__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: 10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.other__text{
+    color: #77767B;
+    position: absolute;
+    background-color: white;
+    font-size: 14px;
+    left: 20px;
+    top: 10px;
+    padding: 0px 8px;
+    z-index: 1 !important;
+}
+.bi-telegram{
+    color: #1B9AE0;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.bi-whatsapp{
+    color: #20A41F;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.bi-envelope{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.bi-person-circle{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.back__text{
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #4263EB;
+    margin-top: 20px;
+}
+@media (max-width: 420px) {
+    .container{
+        background-color: white;
+        margin-top: 40px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        height: 100vh;
+    }
+    body{
+        background-color: #4962E3;
+    }
+    
+}
+@media (max-width: 670px) {
+    .form__wrapper{
+        width: 320px;
+    }
+    .dropdown__button_third div{
+        margin-left: -180px;
+    }
+    .phone__number_wrapper{
+        width: 320px;
+    }
+}

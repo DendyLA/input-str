@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/css/intlTelInput.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="title">Способ отправки перевода</div>
+    <div class="container">
+        <div class="amount">
+            <div class="amount__title">Будет отправлено</div>
+            <div class="amount__total">
+                <div class="amount__minus">-</div>
+                <input class="amount__number" type="text" value="50000"></input>
+                <div class="amount__plus">+</div>
+            </div>
+            <div class="amount__currency"></div>
+        </div>
+        <div class="footer">
+            <div class="take__number_wrapper">
+                <div class="take__number_upper">К выдаче</div>
+                <div class="take__number"></div>
+            </div>
+            <a href="../choiсeTake/choiсe.html"><button class="btn">Отправить</button></a>
+        </div>
+        <div class="choice__wrapper">
+            <div class="choice__title">Выберите способ отправки перевода</div>
+            <div class="custom-control custom-switch choice__switch toBank">
+                <div class="choice__text">
+                    <div class="choice__item_title">Перевод на счет в банке</div>
+                    <div class="choice__item_info">Зачисление в течение 0-3 дней</div>
+                </div>
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch1" >
+                <label class="custom-control-label choice__switch_item" for="customSwitch1"></label>
+            </div>
+            <div class="custom-control custom-switch choice__switch fromCard">
+                <div class="choice__text">
+                    <div class="choice__item_title">Перевод с карты</div>
+                    <div class="choice__item_info">Зачисление в течение 1 часа <br> Комиссия +2%</div>
+                </div>
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch2" >
+                <label class="custom-control-label choice__switch_item" for="customSwitch2"></label>
+            </div>  
+            <div class="custom-control custom-switch choice__switch payPal">
+                <div class="choice__text">
+                    <div class="choice__item_title">PayPal, Zelle и другие системы</div>
+                    <div class="choice__item_info">Зачисление в течение 15 минут <br> Комиссия +2%</div>
+                </div>
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch3">
+                <label class="custom-control-label choice__switch_item" for="customSwitch3"></label>
+            </div>  
+            <div class="custom-control custom-switch choice__switch crypto">
+                <div class="choice__text">
+                    <div class="choice__item_title">Криптовалютой</div>
+                    <div class="choice__item_info">Зачисление в течение 15 минут <br> Комиссия +4%</div>
+                </div>
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch4">
+                <label class="custom-control-label choice__switch_item" for="customSwitch4"></label>
+            </div>  
+            <div class="custom-control custom-switch choice__switch cash">
+                <div class="choice__text">
+                    <div class="choice__item_title">Наличными</div>
+                    <div class="choice__item_info">Зачисление в течение 1 часа <br> Комиссия +4%</div>
+                </div>
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch5">
+                <label class="custom-control-label choice__switch_item" for="customSwitch5"></label>
+            </div>
+            <div class="custom-control custom-switch choice__switch other">
+                <div class="choice__text">
+                    <div class="choice__item_title">Другой способ</div>
+                    <div class="choice__item_info">Обсудить с консультантом</div>
+                </div>
+                <input type="checkbox" class="custom-control-input switch__input" id="customSwitch6">
+                <label class="custom-control-label choice__switch_item" for="customSwitch6"></label>
+            </div> 
+        </div>
+        
+        
+    </div>
+        
+
+    <!-- SCripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/intlTelInput.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

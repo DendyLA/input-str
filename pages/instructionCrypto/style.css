@@ -67,13 +67,16 @@
 .main__item{
     margin-top: 20px;
     width: 533px;
-    height: 68px;
+    height: 88px;
     border: 1px solid #A2A0A8;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+}
+.main__item_card{
+    margin-top: 10px;
 }
 .wrapper{
     display: flex;
