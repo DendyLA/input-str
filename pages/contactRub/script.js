@@ -314,6 +314,6 @@ window.onload = function() {
     }else if(localStorage.getItem('sendCurrency') === 'BTC' || localStorage.getItem('sendCurrency') === 'USDT'){
         linkBtn.setAttribute('href', '../takeInfo/takeInfo.html')
     }else{
-        linkBtn.setAttribute('href', '../approve/approve.html')
+        linkBtn.setAttribute('href', '../chat/chat.html')
     }
 }
