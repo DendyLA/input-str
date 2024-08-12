@@ -45,11 +45,14 @@ nameInput.addEventListener('input', e => {
 reqInput.addEventListener('input', e => {
     if(e.target.value !== ''){
         message.textContent = ''
+        reqInput.style.height = 'auto'; // Сначала сбрасываем высоту
+        reqInput.style.setProperty('height', reqInput.scrollHeight + 'px', 'important');
+        
     }else{
         message.textContent = "Введите верные данные";
         message.style.color = "red";
     }
-
+    
 })
 
 

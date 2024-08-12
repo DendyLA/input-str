@@ -243,27 +243,60 @@ for(let i of dropdownMenuSecond.children){
 // }
 
 //take data !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-async function getExchange(currency){
-	const getData = `https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`;
-	try{
-		const res = await fetch(getData);
-		if(!res.ok){
-			throw new Error(`Response status: ${res.status}`)
+// async function getExchange(currency){
+// 	const getData = `https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`;
+// 	try{
+// 		const res = await fetch(getData);
+// 		if(!res.ok){
+// 			throw new Error(`Response status: ${res.status}`)
+// 		}
+// 		const data = await res.json();
+// 		return data[currency]
+// 	}catch(error){
+// 		console.error(error.message);
+// 	}
+
+// }
+
+async function getExchange(from, to){
+	const cryptoApiKey = '530db9d7676ac2a926ab3b456f874ae2458b6e772e10e8345b4f7d61f5b1f8d9';
+	const crypto = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${from}&tsym=${to}&limit=1&api_key=${cryptoApiKey}`
+	const getData = `https://api.tinkoff.ru/v1/currency_rates?from=${from}&to=${to}`;
+	if(from === 'BTC' || from === 'USDT' || to === 'BTC' || to === 'USDT'){
+		try{
+			const res = await fetch(crypto);
+			if(!res.ok){
+				throw new Error(`Response status: ${res.status}`)
+			}
+			const data = await res.json();
+			const final = data;
+			return final.Data.Data[0].close
+		}catch(error){
+			console.error(error.message);
 		}
-		const data = await res.json();
-		return data[currency]
-	}catch(error){
-		console.error(error.message);
+	}else{
+		try{
+			const res = await fetch(getData);
+			if(!res.ok){
+				throw new Error(`Response status: ${res.status}`)
+			}
+			const data = await res.json();
+			const final = data.payload.rates[0].buy;
+			return final
+		}catch(error){
+			console.error(error.message);
+		}
 	}
+	
 
 }
 
-//calculate input-event
+// calculate input-event
 let firstToSecondExchange = 0;
 async function calculateSend(e){
 	const currency = dropdownButtonFirst.innerText.trim();
-	const data = await getExchange(currency.toLowerCase());
 	const takeCurrency = dropdownButtonSecond.innerText.trim();
+	const data = await getExchange(currency, takeCurrency);
 	if(currency == 'Выберите...'){
 		for(let i of message){
 			i.classList.remove('hide');
@@ -274,7 +307,7 @@ async function calculateSend(e){
 		}
 	}
 	let val = removeSpaces(e.target.value)
-	const exchangeCount = data[takeCurrency.toLowerCase()];
+	const exchangeCount = data;
 	//formul for the input field currency and precent
 	
 	let finalData = parseInt(val) * exchangeCount
@@ -318,8 +351,8 @@ sendInput.addEventListener('input', calculateSend);
 
 async function calculateTake(e){
 	const currency = dropdownButtonSecond.innerText.trim();
-	const data = await getExchange(currency.toLowerCase());
 	const sendCurrency = dropdownButtonFirst.innerText.trim();
+	const data = await getExchange(sendcurrency, currency);
 	if(currency == 'Выберите...'){
 		for(let i of message){
 			i.classList.remove('hide');
@@ -330,7 +363,8 @@ async function calculateTake(e){
 		}
 	}
 	let val = removeSpaces(e.target.value)
-	const exchangeCount = data[sendCurrency.toLowerCase()]
+	const cur = data;
+	const exchangeCount = 1 / cur;
 
 	//formul for the input field currency and precent
 	let finalData = parseInt(val) * exchangeCount;
@@ -382,8 +416,8 @@ window.onload = async function() {
 	takeInput.value = '';
 
 	const currency = dropdownButtonFirst.innerText.trim();
-	const data = await getExchange(currency.toLowerCase());
 	const takeCurrency = dropdownButtonSecond.innerText.trim();
+	const data = await getExchange(currency, takeCurrency);
 	if(currency == 'Выберите...'){
 		for(let i of message){
 			i.classList.remove('hide');
@@ -394,7 +428,7 @@ window.onload = async function() {
 		}
 	}
 	let val = removeSpaces(sendInput.value)
-	const exchangeCount = data[takeCurrency.toLowerCase()];
+	const exchangeCount = data;
 	//formul for the input field currency and precent
 	
 	let finalData = parseInt(val) * exchangeCount
@@ -404,7 +438,6 @@ window.onload = async function() {
 	totalElem.innerHTML = formatNumber(parseInt(val) + parseInt(percent.toFixed()));
 	totalElem.parentElement.lastChild.nodeValue = ' '+currency;
 	// finalData = finalData - parseInt(percent);
-
 
 	takeInput.value = formatNumber(finalData.toFixed(2));
 	//final data or takeInput ==NaN
@@ -434,20 +467,16 @@ window.onload = async function() {
 
 commisionUpper.addEventListener('mouseenter', (e) => {
 	commisionInfo.classList.remove('hide')
-	console.log('a')
 })
 
 commisionUpper.addEventListener('mouseleave', (e) => {
 	commisionInfo.classList.add('hide')
-	console.log('b')
 })
 
 commisionUpper.addEventListener('touchstart', (e) => {
 	commisionInfo.classList.remove('hide')
-	console.log('a')
 })
 
 commisionUpper.addEventListener('touchend', (e) => {
 	commisionInfo.classList.add('hide')
-	console.log('b')
 })

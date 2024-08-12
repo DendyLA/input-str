@@ -164,6 +164,7 @@
 .hide{
     display: none;
 }
+
 @media (max-width: 550px) {
     .container{
         padding-top: 20px;

@@ -5,8 +5,19 @@ const amountCurrency = document.querySelector('.amount__currency');
 
 const takeNumber = document.querySelector('.take__number');
 
+const btn = document.querySelector('.btn');
+const link = document.querySelector('.btn__link');
 
 const switches = document.querySelectorAll('.switch__input');
+
+
+const toBank = document.querySelector('.toBank');
+const fromCard = document.querySelector('.fromCard');
+const payPal = document.querySelector('.payPal');
+const crypto = document.querySelector('.crypto');
+const cash = document.querySelector('.cash');
+const other = document.querySelector('.other');
+
 
 function formatNumber(number) {
 	return  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -16,18 +27,36 @@ function removeSpaces(str) {
 }
 
 //take data
-async function getExchange(currency){
-	const getData = `https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`;
-	try{
-		const res = await fetch(getData);
-		if(!res.ok){
-			throw new Error(`Response status: ${res.status}`)
+async function getExchange(from, to){
+	const cryptoApiKey = '530db9d7676ac2a926ab3b456f874ae2458b6e772e10e8345b4f7d61f5b1f8d9';
+	const crypto = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${from}&tsym=${to}&limit=1&api_key=${cryptoApiKey}`
+	const getData = `https://api.tinkoff.ru/v1/currency_rates?from=${from}&to=${to}`;
+	if(from === 'BTC' || from === 'USDT' || to === 'BTC' || to === 'USDT'){
+		try{
+			const res = await fetch(crypto);
+			if(!res.ok){
+				throw new Error(`Response status: ${res.status}`)
+			}
+			const data = await res.json();
+			const final = data;
+			return final.Data.Data[0].close
+		}catch(error){
+			console.error(error.message);
 		}
-		const data = await res.json();
-		return data[currency]
-	}catch(error){
-		console.error(error.message);
+	}else{
+		try{
+			const res = await fetch(getData);
+			if(!res.ok){
+				throw new Error(`Response status: ${res.status}`)
+			}
+			const data = await res.json();
+			const final = data.payload.rates[0].buy;
+			return final
+		}catch(error){
+			console.error(error.message);
+		}
 	}
+	
 
 }
 // Function to handle the checkbox change event
@@ -48,12 +77,26 @@ function handleSwitchChange(event) {
         } else {
             // Добавляем класс 'active' текущему switch
             switchElement.closest('.choice__switch').classList.add('active');
+            btn.removeAttribute('disabled')
+        }
+
+        if(cash.classList.contains('active') || other.classList.contains('active')){
+            link.setAttribute('href', '../chat/chat.html')
+        }else{
+            link.setAttribute('href', '../takeInfo/takeInfo.html')
         }
     });
 }
 // Attach event listener to each switch
 switches.forEach((switchElement) => {
+    // Слушатель для изменения состояния чекбокса
     switchElement.addEventListener('change', handleSwitchChange);
+
+    // Слушатель для клика на родительский элемент
+    switchElement.closest('.choice__switch').addEventListener('click', () => {
+        switchElement.checked = !switchElement.checked; // Переключаем состояние чекбокса
+        handleSwitchChange({ target: switchElement }); // Вызываем функцию обработки
+    });
 });
 
 
@@ -72,8 +115,9 @@ minus.addEventListener('click', async e => {
     window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
 
     const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('takeCurrency').toLowerCase());
-    const exchange = data[window.localStorage.getItem('sendCurrency').toLowerCase()];
+    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
+    const cur = data;
+    let exchange = 1 / cur;
 
     let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
     let percent = parseInt(takeMount)  * parseFloat(removeSpaces(commision));
@@ -94,8 +138,9 @@ plus.addEventListener('click', async e => {
     window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
 
     const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('takeCurrency').toLowerCase());
-    const exchange = data[window.localStorage.getItem('sendCurrency').toLowerCase()];
+    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
+    const cur = data;
+    let exchange = 1 / cur;
 
     let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
     let percent = parseInt(takeMount)  * parseFloat(removeSpaces(commision));
@@ -124,8 +169,9 @@ amountNumber.addEventListener('change', async e=>{
     window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
 
     const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('takeCurrency').toLowerCase());
-    const exchange = data[window.localStorage.getItem('sendCurrency').toLowerCase()];
+    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
+    const cur = data;
+    let exchange = 1 / cur;
 
     let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
     let percent = parseInt(takeMount)  * parseFloat(removeSpaces(commision));
@@ -137,12 +183,7 @@ amountNumber.addEventListener('change', async e=>{
 })
 
 
-const toBank = document.querySelector('.toBank');
-const fromCard = document.querySelector('.fromCard');
-const payPal = document.querySelector('.payPal');
-const crypto = document.querySelector('.crypto');
-const cash = document.querySelector('.cash');
-const other = document.querySelector('.other');
+
 
 
 
@@ -155,11 +196,13 @@ window.onload = async function() {
     window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
 
     const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('takeCurrency').toLowerCase());
-    const exchange = data[window.localStorage.getItem('sendCurrency').toLowerCase()];
+    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
+    const cur = data;
+    let exchange = 1 / cur;
 
     let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
-    let percent = parseInt(takeMount)  * parseFloat(removeSpaces(commision));
+
+    let percent = parseFloat(takeMount)  * parseFloat(removeSpaces(commision));
     percent = parseInt(takeMount) + percent;
     
     window.localStorage.setItem('total', percent.toFixed());
@@ -173,15 +216,13 @@ window.onload = async function() {
         fromCard.classList.add('hide')
         crypto.classList.add('hide')
 
-        toBank.classList.add('active')
-        document.querySelector('.toBank input').setAttribute('checked', true)
+
     }else if(localStorage.getItem('sendCurrency') === 'USD' || localStorage.getItem('sendCurrency') === 'EUR'){
         toBank.classList.add('hide')
         crypto.classList.add('hide')
         payPal.classList.add('hide')
         
-        fromCard.classList.add('active')
-        document.querySelector('.fromCard input').setAttribute('checked', true)
+
     }
 }
 

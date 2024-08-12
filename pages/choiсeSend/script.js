@@ -5,8 +5,18 @@ const amountCurrency = document.querySelector('.amount__currency');
 
 const takeNumber = document.querySelector('.take__number');
 
+const btn = document.querySelector('.btn');
+const link = document.querySelector('.btn__link')
 
 const switches = document.querySelectorAll('.switch__input');
+
+const toBank = document.querySelector('.toBank');
+const fromCard = document.querySelector('.fromCard');
+const payPal = document.querySelector('.payPal');
+const crypto = document.querySelector('.crypto');
+const cash = document.querySelector('.cash');
+const other = document.querySelector('.other');
+
 
 function formatNumber(number) {
 	return  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -32,12 +42,27 @@ function handleSwitchChange(event) {
         } else {
             // Добавляем класс 'active' текущему switch
             switchElement.closest('.choice__switch').classList.add('active');
+            btn.removeAttribute('disabled')
         }
     });
+
+    if(cash.classList.contains('active') || other.classList.contains('active')){
+        link.setAttribute('href', '../chat/chat.html')
+    }else{
+        link.setAttribute('href', '../choiсeTake/choiсe.html')
+    }
+
 }
 // Attach event listener to each switch
 switches.forEach((switchElement) => {
+    // Слушатель для изменения состояния чекбокса
     switchElement.addEventListener('change', handleSwitchChange);
+
+    // Слушатель для клика на родительский элемент
+    switchElement.closest('.choice__switch').addEventListener('click', () => {
+        switchElement.checked = !switchElement.checked; // Переключаем состояние чекбокса
+        handleSwitchChange({ target: switchElement }); // Вызываем функцию обработки
+    });
 });
 
 
@@ -109,12 +134,7 @@ amountNumber.addEventListener('change', e=>{
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('take') + ' ' + window.localStorage.getItem('takeCurrency'));
 })
 
-const toBank = document.querySelector('.toBank');
-const fromCard = document.querySelector('.fromCard');
-const payPal = document.querySelector('.payPal');
-const crypto = document.querySelector('.crypto');
-const cash = document.querySelector('.cash');
-const other = document.querySelector('.other');
+
 
 window.onload = function() {
     amountNumber.value = formatNumber(window.localStorage.getItem('total'));
@@ -141,14 +161,10 @@ window.onload = function() {
         payPal.classList.add('hide')
         crypto.classList.add('hide')
 
-        fromCard.classList.add('active')
-        document.querySelector('.fromCard input').setAttribute('checked', true)
     }else if(localStorage.getItem('sendCurrency') === 'USD' || localStorage.getItem('sendCurrency') === 'EUR'){
         fromCard.classList.add('hide')
         crypto.classList.add('hide')
 
-        toBank.classList.add('active')
-        document.querySelector('.toBank input').setAttribute('checked', true)
     }
 
 }

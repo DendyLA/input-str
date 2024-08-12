@@ -243,6 +243,10 @@ inputTel.addEventListener('keydown', backSpace);
 
 
 //login check
+function containsOnlyLatinLetters(text) {
+    const regex = /^[A-Za-z]+$/; // Регулярное выражение для проверки латинских букв
+    return regex.test(text);
+}
 
 function toggleHideClass(event) {
     const submitButton = document.getElementById("btn"); // Assuming you have a submit button with id "submitButton"
@@ -250,10 +254,11 @@ function toggleHideClass(event) {
     const digitPlusRegex = /^[0-9\+]$/
     // Check inputA value length and update button state
     
-    if (inputLogin.value.length < 5 && !inputLogin.classList.contains('hide') && !digitPlusRegex.test(firstCharLogin)) {
+    if (inputLogin.value.length < 5 && !inputLogin.classList.contains('hide') && !digitPlusRegex.test(firstCharLogin) || !containsOnlyLatinLetters(inputLogin.value) && !inputLogin.classList.contains('hide') && !digitPlusRegex.test(firstCharLogin)) {
         // submitButton.setAttribute('disabled', 'true');// Disable button if less than 5 characters
         message.style = 'color:red;';
         message.innerHTML = "Введите правильный Логин ";
+        
     } else {
         // submitButton.removeAttribute('disabled'); // Enable button if 5 or more characters
         message.innerHTML = "";
@@ -281,11 +286,10 @@ inputTel.addEventListener("input", toggleHideClass);
 //validate Form
 
 button.addEventListener('click', e => {
-    if(validName){
+    if(validName && containsOnlyLatinLetters(inputLogin.value) && inputLogin.value.length > 5){
         
         return true
     }else {
-        console.log('ab')
         e.preventDefault();
         messageName.textContent = "Введите имя";
         messageName.style.color = "red";

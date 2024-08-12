@@ -102,12 +102,16 @@
     width: 100% !important;
     color: black;
     border-radius: 5px !important;
-    height: 50px;
+    min-height: 150px;
     z-index: 0 !important;
     text-align: start;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
+    overflow-y: hidden;
+    resize: none;
+    vertical-align: top;
 }
 .form-check-label{
     width: 100%;
