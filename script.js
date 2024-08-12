@@ -352,7 +352,7 @@ sendInput.addEventListener('input', calculateSend);
 async function calculateTake(e){
 	const currency = dropdownButtonSecond.innerText.trim();
 	const sendCurrency = dropdownButtonFirst.innerText.trim();
-	const data = await getExchange(sendcurrency, currency);
+	const data = await getExchange(sendCurrency, currency);
 	if(currency == 'Выберите...'){
 		for(let i of message){
 			i.classList.remove('hide');
