@@ -259,8 +259,7 @@ for(let i of dropdownMenuSecond.children){
 // }
 
 async function getExchange(from, to){
-	const cryptoApiKey = '530db9d7676ac2a926ab3b456f874ae2458b6e772e10e8345b4f7d61f5b1f8d9';
-	const crypto = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${from}&tsym=${to}&limit=1&api_key=${cryptoApiKey}`
+	const crypto = `https://api.coinbase.com/v2/prices/${from}-${to}/spot`
 	const getData = `https://api.tinkoff.ru/v1/currency_rates?from=${from}&to=${to}`;
 	if(from === 'BTC' || from === 'USDT' || to === 'BTC' || to === 'USDT'){
 		try{
@@ -270,7 +269,7 @@ async function getExchange(from, to){
 			}
 			const data = await res.json();
 			const final = data;
-			return final.Data.Data[0].close
+			return final.data.amount
 		}catch(error){
 			console.error(error.message);
 		}
@@ -294,6 +293,16 @@ async function getExchange(from, to){
 // calculate input-event
 let firstToSecondExchange = 0;
 async function calculateSend(e){
+	//take data from formul
+	let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
 	const currency = dropdownButtonFirst.innerText.trim();
 	const takeCurrency = dropdownButtonSecond.innerText.trim();
 	const data = await getExchange(currency, takeCurrency);
@@ -310,8 +319,12 @@ async function calculateSend(e){
 	const exchangeCount = data;
 	//formul for the input field currency and precent
 	
-	let finalData = parseInt(val) * exchangeCount
-	const percent = parseInt(val) * 0.1;
+	let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * exchangeCount / formulData.h;
+	
+	const percent = parseInt(val) - formul;
+	let finalData = formul;
+	finalData = finalData * exchangeCount;
+
 	commision.innerHTML = formatNumber(percent.toFixed());
 	commision.parentElement.lastChild.nodeValue = ' '+ currency;
 	totalElem.innerHTML = formatNumber(parseInt(val) + parseInt(percent.toFixed()));
@@ -336,10 +349,11 @@ async function calculateSend(e){
 	e.target.value = formatNumber(e.target.value);
 
 	firstToSecondExchange = exchangeCount;
+	window.localStorage.setItem('formul', formul);
 	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
 	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
-	window.localStorage.setItem('commision', 0.1);
+	window.localStorage.setItem('commision', percent);
 	window.localStorage.setItem('take', takeInput.value);
 	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML) ))
 
@@ -350,9 +364,20 @@ async function calculateSend(e){
 sendInput.addEventListener('input', calculateSend);
 
 async function calculateTake(e){
+	//take data from formul
+	let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
 	const currency = dropdownButtonSecond.innerText.trim();
 	const sendCurrency = dropdownButtonFirst.innerText.trim();
 	const data = await getExchange(sendCurrency, currency);
+	const dataRev = await getExchange(currency, sendCurrency)
 	if(currency == 'Выберите...'){
 		for(let i of message){
 			i.classList.remove('hide');
@@ -362,13 +387,15 @@ async function calculateTake(e){
 			i.classList.add('hide');
 		}
 	}
-	let val = removeSpaces(e.target.value)
-	const cur = data;
-	const exchangeCount = 1 / cur;
+	let val = removeSpaces(e.target.value) * dataRev;
+	const exchangeCount = data;
 
 	//formul for the input field currency and precent
-	let finalData = parseInt(val) * exchangeCount;
-	const percent = parseInt(removeSpaces(sendInput.value)) * 0.1;
+	let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * exchangeCount / formulData.h;
+	
+	const percent = parseInt(val) - formul;
+	let finalData = formul ;
+
 	commision.innerHTML = formatNumber(percent.toFixed());
 	commision.parentElement.lastChild.nodeValue = ' '+ sendCurrency;
 	totalElem.innerHTML = formatNumber(parseInt(removeSpaces(sendInput.value)) + parseInt(percent.toFixed()));
@@ -390,11 +417,11 @@ async function calculateTake(e){
 	}
 	e.target.value = formatNumber(e.target.value);
 
-
+	window.localStorage.setItem('formul', formul);
 	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
 	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
-	window.localStorage.setItem('commision', 0.1);
+	window.localStorage.setItem('commision', percent);
 	window.localStorage.setItem('take', takeInput.value);
 	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML)))
 
@@ -408,6 +435,16 @@ takeInput.addEventListener('input', calculateTake);
 
 //reload page
 window.onload = async function() {
+	//take data from formul
+	let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
 	//layout frist input
 	dropdownButtonFirst.innerHTML = rub.innerHTML;
 	dropdownButtonSecond.innerHTML = dollar.innerHTML;
@@ -430,9 +467,14 @@ window.onload = async function() {
 	let val = removeSpaces(sendInput.value)
 	const exchangeCount = data;
 	//formul for the input field currency and precent
+	//{0001}х{API:RUB/{0002}}х{0003}х{0004}х{0005}-({0006}-{0007})х{API:USD/{0008}}
 	
-	let finalData = parseInt(val) * exchangeCount
-	const percent = parseInt(val) * 0.1;
+	let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * exchangeCount / formulData.h;
+	
+	const percent = parseInt(val) - formul;
+	let finalData = formul;
+	finalData = finalData * exchangeCount;
+	
 	commision.innerHTML = formatNumber(percent.toFixed());
 	commision.parentElement.lastChild.nodeValue = ' '+ currency;
 	totalElem.innerHTML = formatNumber(parseInt(val) + parseInt(percent.toFixed()));
@@ -451,15 +493,19 @@ window.onload = async function() {
 	sendInput.value = formatNumber(sendInput.value);
 
 	firstToSecondExchange = exchangeCount;
+	window.localStorage.setItem('formul', formul);
 	window.localStorage.setItem('exchange', parseFloat(firstToSecondExchange));
 	window.localStorage.setItem('sendCurrency', dropdownButtonFirst.innerText.trim());
 	window.localStorage.setItem('takeCurrency', dropdownButtonSecond.innerText.trim());
-	window.localStorage.setItem('commision', 0.1);
+	window.localStorage.setItem('commision', percent);
 	window.localStorage.setItem('take', takeInput.value);
 	window.localStorage.setItem('total', parseInt(removeSpaces(totalElem.innerHTML)))
 
 	//send user to current page
+
 	
+	
+
 };
 
 

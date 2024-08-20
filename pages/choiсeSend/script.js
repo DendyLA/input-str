@@ -66,7 +66,17 @@ switches.forEach((switchElement) => {
 });
 
 
-minus.addEventListener('click', e => {
+minus.addEventListener('click', async e => {
+    //take data from formul
+	let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     // if( parseInt(removeSpaces(amountNumber.value)) <= 10000){
     //     amountNumber.value = formatNumber(10000);
     //     window.localStorage.setItem('total', 10000);
@@ -78,37 +88,52 @@ minus.addEventListener('click', e => {
 
     window.localStorage.setItem('total', amountNumber.value);
 
-    const commision = window.localStorage.getItem('commision');
     const exchange = window.localStorage.getItem('exchange');
-
-    let percent = parseInt(removeSpaces(amountNumber.value))  * parseFloat(removeSpaces(commision));
-    percent = parseInt(removeSpaces(amountNumber.value)) - percent;
+    let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * exchange / formulData.h;
     
-    let takeMount = percent * parseFloat(exchange);
-    window.localStorage.setItem('take', takeMount.toFixed(2));
-
+    let total = formul * exchange;
+    window.localStorage.setItem('take', total.toFixed(2));
+    window.localStorage.setItem('formul', formul);
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('take') + ' ' + window.localStorage.getItem('takeCurrency'));
 })
 
-plus.addEventListener('click', e => {
+plus.addEventListener('click', async e => {
+    //take data from formul
+	let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     let val = parseInt(removeSpaces(amountNumber.value));
     val++;
     amountNumber.value = formatNumber(val);
     
     window.localStorage.setItem('total', parseInt(removeSpaces(amountNumber.value)));
 
-    const commision = window.localStorage.getItem('commision');
     const exchange = window.localStorage.getItem('exchange');
-
-    let percent = parseInt(removeSpaces(amountNumber.value))  * parseFloat(removeSpaces(commision));
-    percent = parseInt(removeSpaces(amountNumber.value)) - percent;
-    let takeMount = percent * parseFloat(exchange);
-    window.localStorage.setItem('take', takeMount.toFixed(2));
-
+    let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * exchange / formulData.h;
+    
+    let total = formul * exchange;
+    window.localStorage.setItem('take', total.toFixed(2));
+    window.localStorage.setItem('formul', formul);
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('take') + ' ' + window.localStorage.getItem('takeCurrency'));
 })
 
-amountNumber.addEventListener('change', e=>{
+amountNumber.addEventListener('change', async e=>{
+    //take data from formul
+	let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     if(isNaN(  parseInt(removeSpaces(e.target.value)) )){
         amountNumber.value = window.localStorage.getItem('total');
         return
@@ -122,40 +147,47 @@ amountNumber.addEventListener('change', e=>{
     
     window.localStorage.setItem('total', parseInt(removeSpaces(amountNumber.value)));
 
-    const commision = window.localStorage.getItem('commision');
     const exchange = window.localStorage.getItem('exchange');
-
-    let percent = parseInt(removeSpaces(amountNumber.value))  * parseFloat(removeSpaces(commision));
-    percent = parseInt(removeSpaces(amountNumber.value)) - percent;
+    let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * exchange / formulData.h;
     
-    let takeMount = percent * parseFloat(exchange);
-    window.localStorage.setItem('take', takeMount.toFixed(2));
-
+    let total = formul * exchange;
+    window.localStorage.setItem('take', total.toFixed(2));
+    window.localStorage.setItem('formul', formul);
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('take') + ' ' + window.localStorage.getItem('takeCurrency'));
 })
 
 
 
-window.onload = function() {
+window.onload = async function() {
+    //take data from formul
+	let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     amountNumber.value = formatNumber(window.localStorage.getItem('total'));
     amountCurrency.innerHTML = window.localStorage.getItem('sendCurrency');
     let val = parseInt(removeSpaces(amountNumber.value));
     amountNumber.value = formatNumber(val);
     
+
     window.localStorage.setItem('total', parseInt(removeSpaces(amountNumber.value)));
 
-    const commision = window.localStorage.getItem('commision');
+    
     const exchange = window.localStorage.getItem('exchange');
-
-    let percent = parseFloat(removeSpaces(amountNumber.value))  * parseFloat(removeSpaces(commision));
-    percent = parseInt(removeSpaces(amountNumber.value)) - percent;
-    let takeMount = percent * parseFloat(exchange);
-    window.localStorage.setItem('take', takeMount.toFixed(2));
-
+    let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * exchange / formulData.h;
+    
+    let total = formul * exchange;
+    window.localStorage.setItem('take', total.toFixed(2));
+    
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('take') + ' ' + window.localStorage.getItem('takeCurrency'));
 
 
-
+    window.localStorage.setItem('formul', formul);
     if(localStorage.getItem('sendCurrency') === 'RUB'){
         toBank.classList.add('hide')
         payPal.classList.add('hide')

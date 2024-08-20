@@ -28,8 +28,7 @@ function removeSpaces(str) {
 
 //take data
 async function getExchange(from, to){
-	const cryptoApiKey = '530db9d7676ac2a926ab3b456f874ae2458b6e772e10e8345b4f7d61f5b1f8d9';
-	const crypto = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${from}&tsym=${to}&limit=1&api_key=${cryptoApiKey}`
+	const crypto = `https://api.coinbase.com/v2/prices/${from}-${to}/spot`
 	const getData = `https://api.tinkoff.ru/v1/currency_rates?from=${from}&to=${to}`;
 	if(from === 'BTC' || from === 'USDT' || to === 'BTC' || to === 'USDT'){
 		try{
@@ -39,7 +38,7 @@ async function getExchange(from, to){
 			}
 			const data = await res.json();
 			const final = data;
-			return final.Data.Data[0].close
+			return final.data.amount
 		}catch(error){
 			console.error(error.message);
 		}
@@ -101,6 +100,15 @@ switches.forEach((switchElement) => {
 
 
 minus.addEventListener('click', async e => {
+    let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     // if( parseInt(removeSpaces(amountNumber.value)) <= 10000){
     //     amountNumber.value = formatNumber(10000);
     //     window.localStorage.setItem('total', 10000);
@@ -112,46 +120,78 @@ minus.addEventListener('click', async e => {
     val--
     amountNumber.value = formatNumber(val);
     
+    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
+    const dataRever = await getExchange(window.localStorage.getItem('takeCurrency'), window.localStorage.getItem('sendCurrency'));
+    amountNumber.value = formatNumber(amountNumber.value);
+    amountCurrency.innerHTML = window.localStorage.getItem('takeCurrency');
+    
+    
     window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
 
-    const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
-    const cur = data;
-    let exchange = 1 / cur;
-
-    let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
-    let percent = parseInt(takeMount)  * parseFloat(removeSpaces(commision));
-    percent = parseInt(takeMount) + percent;
+    let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * dataRever / formulData.h;
     
+    
+    const cur = formul;
+
+    let takeMount = parseInt(cur) * parseFloat(dataRever);
+    let commision = val - formul;
+    commision = commision * parseFloat(dataRever);
+    let percent =  takeMount + commision + commision;
+
     window.localStorage.setItem('total', percent.toFixed());
 
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('total') + ' ' + window.localStorage.getItem('sendCurrency'));
 })
 
 plus.addEventListener('click', async e => {
+    let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     amountNumber.value = formatNumber(window.localStorage.getItem('take'));
     amountCurrency.innerHTML = window.localStorage.getItem('takeCurrency');
     let val = parseInt(removeSpaces(amountNumber.value));
     val++
     amountNumber.value = formatNumber(val);
     
+    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
+    const dataRever = await getExchange(window.localStorage.getItem('takeCurrency'), window.localStorage.getItem('sendCurrency'));
+    amountNumber.value = formatNumber(amountNumber.value);
+    amountCurrency.innerHTML = window.localStorage.getItem('takeCurrency');
+    
+    
     window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
 
-    const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
-    const cur = data;
-    let exchange = 1 / cur;
-
-    let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
-    let percent = parseInt(takeMount)  * parseFloat(removeSpaces(commision));
-    percent = parseInt(takeMount) + percent;
+    let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * dataRever / formulData.h;
     
+    
+    const cur = formul;
+
+    let takeMount = parseInt(cur) * parseFloat(dataRever);
+    let commision = val - formul;
+    commision = commision * parseFloat(dataRever);
+    let percent =  takeMount + commision + commision;
+
     window.localStorage.setItem('total', percent.toFixed());
 
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('total') + ' ' + window.localStorage.getItem('sendCurrency'));
 })
 
 amountNumber.addEventListener('change', async e=>{
+    let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     if(isNaN(  parseInt(removeSpaces(e.target.value)) )){
         amountNumber.value = formatNumber(window.localStorage.getItem('take'));
         return
@@ -160,7 +200,8 @@ amountNumber.addEventListener('change', async e=>{
     //     amountNumber.value = formatNumber(10000);
     //     window.localStorage.setItem('total', 10000);
     // }
-    
+    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
+    const dataRever = await getExchange(window.localStorage.getItem('takeCurrency'), window.localStorage.getItem('sendCurrency'));
     amountNumber.value = formatNumber(amountNumber.value);
     amountCurrency.innerHTML = window.localStorage.getItem('takeCurrency');
     let val = parseInt(removeSpaces(amountNumber.value));
@@ -168,14 +209,16 @@ amountNumber.addEventListener('change', async e=>{
     
     window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
 
-    const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
-    const cur = data;
-    let exchange = 1 / cur;
+    let formul = formulData.a * parseInt(val) / formulData.b * formulData.c * formulData.d * formulData.e - (formulData.f - formulData.g) * dataRever / formulData.h;
+    
+    
+    const cur = formul;
 
-    let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
-    let percent = parseInt(takeMount)  * parseFloat(removeSpaces(commision));
-    percent = parseInt(takeMount) + percent;
+    let takeMount = parseInt(cur) * parseFloat(dataRever);
+    let commision = val - formul;
+    commision = commision * parseFloat(dataRever);
+    let percent =  takeMount + commision + commision;
+
     
     window.localStorage.setItem('total', percent.toFixed());
 
@@ -188,24 +231,20 @@ amountNumber.addEventListener('change', async e=>{
 
 
 window.onload = async function() {
+    let formulData = null;
+	await fetch('/input/pages/formulManage/getFormul.php')
+    .then(response => response.json()) // Преобразуем ответ в формат JSON
+    .then(data => {
+       formulData = data; // Выводим данные в консоль
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
     amountNumber.value = formatNumber(window.localStorage.getItem('take'));
     amountCurrency.innerHTML = window.localStorage.getItem('takeCurrency');
-    let val = parseInt(removeSpaces(amountNumber.value));
-    amountNumber.value = formatNumber(val);
+    let val = window.localStorage.getItem('total');;
+
     
-    window.localStorage.setItem('take', parseInt(removeSpaces(amountNumber.value)));
-
-    const commision = window.localStorage.getItem('commision');
-    const data = await getExchange(window.localStorage.getItem('sendCurrency'), window.localStorage.getItem('takeCurrency'));
-    const cur = data;
-    let exchange = 1 / cur;
-
-    let takeMount = parseInt(removeSpaces(amountNumber.value)) * parseFloat(exchange);
-
-    let percent = parseFloat(takeMount)  * parseFloat(removeSpaces(commision));
-    percent = parseInt(takeMount) + percent;
-    
-    window.localStorage.setItem('total', percent.toFixed());
 
     takeNumber.innerHTML = formatNumber(window.localStorage.getItem('total') + ' ' + window.localStorage.getItem('sendCurrency'));
 
